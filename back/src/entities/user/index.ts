@@ -14,20 +14,20 @@ export class User {
   @PrimaryColumn("uuid")
   readonly id: string;
 
-  @Column({ type: "varchar", unique: true, nullable: false })
+  @Column({ type: "string", length: 30, unique: true, nullable: false })
   name!: string;
 
-  @Column({ type: "varchar", nullable: false })
+  @Column({ type: "string", nullable: false })
   @Exclude()
   password!: string;
 
   @Column({ type: "boolean", nullable: false, default: false })
   isAdm!: boolean;
 
-  @Column({ type: "varchar", nullable: false })
+  @Column({ type: "string", length: 150, nullable: false })
   securityAsk!: string;
 
-  @Column({ type: "varchar", nullable: false })
+  @Column({ type: "string", length: 150, nullable: false })
   securityAnswer!: string;
 
   @CreateDateColumn()
