@@ -8,6 +8,7 @@ import {
   JoinColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Category } from "../category";
 import { User } from "../user";
 
 @Entity()
@@ -33,6 +34,10 @@ export class Product {
   @ManyToOne((type) => User, { nullable: false, onDelete: "CASCADE" })
   @JoinColumn()
   user!: User;
+
+  @ManyToOne((type) => Category, { nullable: true, onDelete: "SET NULL" })
+  @JoinColumn()
+  category!: Category;
 
   @CreateDateColumn()
   createdAt!: Date;
