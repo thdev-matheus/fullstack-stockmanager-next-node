@@ -14,14 +14,15 @@ export class User {
   @PrimaryColumn("uuid")
   readonly id: string;
 
-  @CreateDateColumn()
-  createdAt!: Date;
-
-  @UpdateDateColumn()
-  updatedAt!: Date;
-
   @Column({ type: "varchar", unique: true, nullable: false })
   name!: string;
+
+  @Column({ type: "varchar", nullable: false })
+  @Exclude()
+  password!: string;
+
+  @Column({ type: "boolean", nullable: false, default: false })
+  isAdm!: boolean;
 
   @Column({ type: "varchar", nullable: false })
   securityAsk!: string;
@@ -29,9 +30,11 @@ export class User {
   @Column({ type: "varchar", nullable: false })
   securityAnswer!: string;
 
-  @Column({ type: "varchar", nullable: false })
-  @Exclude()
-  password!: string;
+  @CreateDateColumn()
+  createdAt!: Date;
+
+  @UpdateDateColumn()
+  updatedAt!: Date;
 
   constructor() {
     this.id = uuid();
