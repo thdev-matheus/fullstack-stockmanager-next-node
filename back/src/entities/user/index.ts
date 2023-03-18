@@ -2,12 +2,13 @@ import {
   Entity,
   Column,
   PrimaryColumn,
-  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
+import { Product } from "../product";
 
 @Entity()
 export class User {
@@ -35,6 +36,11 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt!: Date;
+
+  @OneToMany((type) => Product, (product) => product.purchasePrice, {
+    onDelete: "CASCADE",
+  })
+  products!: Product[];
 
   constructor() {
     this.id = uuid();

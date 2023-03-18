@@ -5,8 +5,10 @@ import {
   PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { User } from "../user";
 
 @Entity()
 export class Product {
@@ -27,6 +29,16 @@ export class Product {
 
   @Column({ type: "float", nullable: false })
   salePrice!: number;
+
+  @ManyToOne((type) => User, { nullable: false, onDelete: "CASCADE" })
+  @JoinColumn()
+  user!: User;
+
+  @CreateDateColumn()
+  createdAt!: Date;
+
+  @UpdateDateColumn()
+  updatedAt!: Date;
 
   constructor() {
     this.id = uuid();
