@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Product } from "../product";
+import { Product } from "../product/product";
 
 @Entity()
 export class Category {

@@ -8,15 +8,15 @@ import {
   JoinColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Category } from "../category";
-import { User } from "../user";
+import { Category } from "../category/category";
+import { User } from "../user/user";
 
 @Entity()
 export class Product {
   @PrimaryColumn("uuid")
   readonly id: string;
 
-  @Column({ type: "string", length: 250, nullable: false, unique: true })
+  @Column({ type: "varchar", length: 250, nullable: false, unique: true })
   name!: string;
 
   @Column({ type: "int", nullable: false, default: 0 })

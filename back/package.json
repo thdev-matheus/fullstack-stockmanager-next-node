@@ -1,6 +1,7 @@
 {
   "name": "back",
   "version": "1.0.0",
+  "module": "ES6",
   "description": "Aplicação fullstack que é um gerenciador de estoque de produtos",
   "main": "index.js",
   "repository": "git@github.com:thdev-matheus/fullstack-stockmanager-react-node.git",
