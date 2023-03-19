@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
-import { Product } from "../product/product";
+import { Product } from "./product";
 
 @Entity()
 export class User {
@@ -30,6 +30,9 @@ export class User {
 
   @Column({ type: "varchar", length: 150, nullable: false })
   securityAnswer!: string;
+
+  @Column({ type: "boolean", default: true })
+  isActive!: boolean;
 
   @CreateDateColumn()
   createdAt!: Date;

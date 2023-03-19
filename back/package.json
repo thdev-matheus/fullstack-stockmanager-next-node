@@ -7,12 +7,12 @@
   "repository": "git@github.com:thdev-matheus/fullstack-stockmanager-react-node.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"NODE_ENV=dev ts-node-dev --ignore-watch node_modules src/server.ts",
-    "dockerdev":"ts-node-dev --ignore-watch node_modules src/server.ts",
-    "typeorm":"typeorm-ts-node-commonjs",
-    "build":"tsc",
-    "start":"ts-node-dev --ignore-watch node_modules src/server.ts",
-    "startbuild":"node dist/server.js"
+    "dev": "cross-env ts-node-dev --ignore-watch node_modules src/server.ts",
+    "dockerdev": "ts-node-dev --ignore-watch node_modules src/server.ts",
+    "typeorm": "cross-env typeorm-ts-node-commonjs",
+    "build": "tsc",
+    "start": "ts-node-dev --ignore-watch node_modules src/server.ts",
+    "startbuild": "node dist/server.js"
   },
   "keywords": [],
   "author": "Matheus Henrique Vieira Cardoso",
@@ -24,6 +24,7 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.3",
     "@types/uuid": "^9.0.1",
+    "cross-env": "^7.0.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.2"
   },
@@ -37,7 +38,8 @@
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.12",
+    "sqlite3": "^5.1.6",
+    "typeorm": "^0.3.11",
     "uuid": "^9.0.0",
     "yup": "^0.32.11"
   }
