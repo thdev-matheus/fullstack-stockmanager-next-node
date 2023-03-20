@@ -28,7 +28,7 @@ services:
     depends_on:
       - database
     volumes:
-      - .:/usr/app
+      - ./back:/usr/app
 
   # frontend:
   #   container_name: frontend
