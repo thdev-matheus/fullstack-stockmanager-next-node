@@ -9,3 +9,11 @@ export interface IUser {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IUserRequest {
+  name?: string;
+  password?: string;
+  isAdm?: boolean;
+  securityAsk?: string;
+  securityAnswer?: string;
+}
