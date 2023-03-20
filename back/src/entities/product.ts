@@ -9,7 +9,6 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./category";
-import { User } from "./user";
 
 @Entity()
 export class Product {
@@ -30,10 +29,6 @@ export class Product {
 
   @Column({ type: "float", nullable: false })
   salePrice!: number;
-
-  @ManyToOne((type) => User, { nullable: false, onDelete: "CASCADE" })
-  @JoinColumn()
-  user!: User;
 
   @ManyToOne((type) => Category, { nullable: true, onDelete: "SET NULL" })
   @JoinColumn()
