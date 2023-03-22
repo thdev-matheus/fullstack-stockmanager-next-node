@@ -17,3 +17,8 @@ export interface IUserRequest {
   securityAsk?: string;
   securityAnswer?: string;
 }
+
+export interface IUserLogin {
+  name: string;
+  password: string;
+}
