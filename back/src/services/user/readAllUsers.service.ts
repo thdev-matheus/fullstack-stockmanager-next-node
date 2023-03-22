@@ -1,15 +1,11 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user";
-import { FindOneOptions } from "typeorm";
 
 export const readAllUsersService = async (
   currentURL: string,
   page: number = 1,
   limit: number = 5
 ) => {
-  if (!page) page = 1;
-  if (!limit) limit = 5;
-
   page = Number(page);
   limit = Number(limit);
 
