@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { createUserController } from "../../controllers/user/createUser.controller";
 import { readAllUsersController } from "../../controllers/user/readAllUsers.controller";
+import { retrieveUserController } from "../../controllers/user/retrieveUser.controller";
 
 import { createUserValidationFieldsMiddleware } from "../../middlewares/createUserValidationFields.middleware";
 
@@ -15,6 +16,7 @@ export const userRoutes = (): Router => {
     createUserController
   );
   router.get("", readAllUsersController);
+  router.get("/:userId", retrieveUserController);
 
   return router;
 };
