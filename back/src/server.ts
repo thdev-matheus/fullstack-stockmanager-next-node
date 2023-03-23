@@ -1,6 +1,7 @@
 import { app } from "./app";
 import { AppDataSource } from "./data-source";
 import "dotenv/config";
+import { initStaff } from "./config/initStaff";
 
 const init = async () => {
   const SERVER_PORT = process.env.SERVER_PORT || 3001;
@@ -15,9 +16,10 @@ const init = async () => {
       console.log("Erro durante a conexão com o banco de dados: ", err)
     );
 
-  app.listen(SERVER_PORT, () =>
-    console.log(`Servidor iniciado na porta: ${SERVER_PORT}`)
-  );
+  app.listen(SERVER_PORT, () => {
+    console.log(`Servidor iniciado na porta: ${SERVER_PORT}`);
+    initStaff();
+  });
 };
 
 init();

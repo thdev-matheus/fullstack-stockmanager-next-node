@@ -3,6 +3,7 @@ export interface IUser {
   name: string;
   password: string;
   isAdm: boolean;
+  isStaff: boolean;
   securityAsk: string;
   securityAnswer: string;
   isActive: boolean;

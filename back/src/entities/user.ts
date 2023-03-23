@@ -23,6 +23,9 @@ export class User {
   @Column({ type: "boolean", nullable: false, default: false })
   isAdm!: boolean;
 
+  @Column({ type: "boolean", nullable: false, default: false })
+  isStaff!: boolean;
+
   @Column({ type: "varchar", length: 150, nullable: false })
   securityAsk!: string;
 
