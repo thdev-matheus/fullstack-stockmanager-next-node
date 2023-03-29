@@ -5,6 +5,7 @@ import { retrieveUserController } from "../../controllers/user/retrieveUser.cont
 import { updateUserController } from "../../controllers/user/updateUser.controller";
 
 import { createUserValidationFieldsMiddleware } from "../../middlewares/createUserValidationFields.middleware";
+import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.middleware";
 import { updateUserValidationFieldsMiddleware } from "../../middlewares/updateUserValidationFields.middleware";
 
 import {
@@ -15,6 +16,8 @@ import {
 const router = Router();
 
 export const userRoutes = (): Router => {
+  router.use(isAuthenticatedMiddleware);
+
   router.post(
     "",
     createUserValidationFieldsMiddleware(createUserSchema),
