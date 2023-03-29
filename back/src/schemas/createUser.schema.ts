@@ -22,3 +22,22 @@ export const createUserSchema: yup.SchemaOf<IUserRequest> = yup.object().shape({
     .required("securityAnswer: campo obrigatório")
     .max(100),
 });
+
+export const updateUserSchema: yup.SchemaOf<IUserRequest> = yup.object().shape({
+  name: yup.string().optional().min(4),
+
+  password: yup
+    .string()
+    .optional()
+    .max(50)
+    .matches(
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/,
+      "password: a senha deve conter ao menos uma letra maiúscula, uma minúscula, um caractere especial, um número e no mínimo 8 dígitos"
+    ),
+
+  isAdm: yup.boolean().optional(),
+
+  securityAsk: yup.string().optional().max(150),
+
+  securityAnswer: yup.string().optional().max(100),
+});
