@@ -29,7 +29,12 @@ export const userLoginService = async ({ name, password }: IUserLogin) => {
   }
 
   const token = jwt.sign(
-    { userId: user.id, userName: user.name },
+    {
+      userId: user.id,
+      userName: user.name,
+      userIsAdm: user.isAdm,
+      userIsStaff: user.isStaff,
+    },
     process.env.SECRET_KEY!,
     { expiresIn: "24h" }
   );
