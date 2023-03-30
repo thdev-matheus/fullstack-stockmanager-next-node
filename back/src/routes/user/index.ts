@@ -19,12 +19,6 @@ const router = Router();
 export const userRoutes = (): Router => {
   router.use(isAuthenticatedMiddleware);
 
-  router.patch(
-    "/:userId",
-    updateUserValidationFieldsMiddleware(updateUserSchema),
-    updateUserController
-  );
-
   router.post(
     "",
     createUserValidationFieldsMiddleware(createUserSchema),
@@ -34,6 +28,12 @@ export const userRoutes = (): Router => {
   router.get("", readAllUsersController);
 
   router.get("/:userId", retrieveUserController);
+
+  router.patch(
+    "/:userId",
+    updateUserValidationFieldsMiddleware(updateUserSchema),
+    updateUserController
+  );
 
   return router;
 };
