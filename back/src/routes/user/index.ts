@@ -6,6 +6,7 @@ import { updateUserController } from "../../controllers/user/updateUser.controll
 
 import { createUserValidationFieldsMiddleware } from "../../middlewares/createUserValidationFields.middleware";
 import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.middleware";
+import { isStaffOrOwnerMiddleware } from "../../middlewares/isStaffOrOwner.middleware";
 import { updateUserValidationFieldsMiddleware } from "../../middlewares/updateUserValidationFields.middleware";
 
 import {
@@ -18,6 +19,12 @@ const router = Router();
 export const userRoutes = (): Router => {
   router.use(isAuthenticatedMiddleware);
 
+  router.patch(
+    "/:userId",
+    updateUserValidationFieldsMiddleware(updateUserSchema),
+    updateUserController
+  );
+
   router.post(
     "",
     createUserValidationFieldsMiddleware(createUserSchema),
@@ -27,12 +34,6 @@ export const userRoutes = (): Router => {
   router.get("", readAllUsersController);
 
   router.get("/:userId", retrieveUserController);
-
-  router.patch(
-    "/:userId",
-    updateUserValidationFieldsMiddleware(updateUserSchema),
-    updateUserController
-  );
 
   return router;
 };

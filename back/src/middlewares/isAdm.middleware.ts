@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "../errors";
 
-export const isStaffMiddleware = (
+export const isAdmMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
