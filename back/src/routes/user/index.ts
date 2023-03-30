@@ -17,7 +17,7 @@ import {
 const router = Router();
 
 export const userRoutes = (): Router => {
-  router.use(isAuthenticatedMiddleware);
+  router.use(isAuthenticatedMiddleware, isStaffOrOwnerMiddleware);
 
   router.post(
     "",
