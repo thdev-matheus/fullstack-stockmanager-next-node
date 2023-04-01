@@ -3,11 +3,16 @@ import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.mid
 import { isAdmMiddleware } from "../../middlewares/isAdm.middleware";
 
 import { createCategoryController } from "../../controllers/category/createCategory.controller";
+import { readAllCategoriesController } from "../../controllers/category/readAllCategories.controller";
 
 const router = Router();
 
 export const categoryRoutes = () => {
-  router.use(isAuthenticatedMiddleware, isAdmMiddleware);
+  router.use(isAuthenticatedMiddleware);
+
+  router.get("", readAllCategoriesController);
+
+  router.use(isAdmMiddleware);
 
   router.post("", createCategoryController);
 
