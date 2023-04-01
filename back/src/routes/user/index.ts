@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createUserController } from "../../controllers/user/createUser.controller";
+import { deleteUserController } from "../../controllers/user/deleteUser.controller";
 import { readAllUsersController } from "../../controllers/user/readAllUsers.controller";
 import { retrieveUserController } from "../../controllers/user/retrieveUser.controller";
 import { updateUserController } from "../../controllers/user/updateUser.controller";
@@ -34,6 +35,8 @@ export const userRoutes = (): Router => {
     updateUserValidationFieldsMiddleware(updateUserSchema),
     updateUserController
   );
+
+  router.delete("/:userId", deleteUserController);
 
   return router;
 };
