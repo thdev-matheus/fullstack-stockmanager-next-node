@@ -11,7 +11,7 @@ export const isAdmMiddleware = (
   if (!userIsAdm) {
     throw new AppError(
       401,
-      "Esta rota só pode ser acessada por um cliente administrador deste sistema"
+      "Esta rota só pode ser acessada por um administrador deste sistema"
     );
   }
 
