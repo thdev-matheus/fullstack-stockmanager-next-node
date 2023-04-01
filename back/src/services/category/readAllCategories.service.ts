@@ -10,5 +10,5 @@ export const readAllCategoriesService = async () => {
     counter: countCategories,
     results: categories,
   };
-  return categories;
+  return response;
 };
