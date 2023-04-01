@@ -4,7 +4,7 @@ import { deleteUserService } from "../../services/user/deleteUser.service";
 export const deleteUserController = async (req: Request, res: Response) => {
   const { userId } = req.params;
 
-  await deleteUserService(userId);
+  const _ = await deleteUserService(userId);
 
-  return res.status(204);
+  return res.status(204).json({});
 };

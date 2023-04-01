@@ -10,7 +10,7 @@ export const deleteUserService = async (id: string) => {
     throw new AppError(404, "Usuário não encontrado");
   }
 
-  await userRepo.delete(id);
+  const deletedUSer = await userRepo.delete(id);
 
-  return true;
+  return deletedUSer;
 };
