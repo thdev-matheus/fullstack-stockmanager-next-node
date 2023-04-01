@@ -30,13 +30,6 @@ export const readAllUsersService = async (
 
   const skip = (page - 1) * limit;
 
-  console.log(page);
-  console.log(typeof page);
-  console.log(limit);
-  console.log(typeof limit);
-  console.log(skip);
-  console.log(typeof skip);
-
   const users = await userRepo.find({
     skip,
     take: limit,

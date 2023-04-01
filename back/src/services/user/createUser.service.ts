@@ -15,8 +15,6 @@ export const createUserService = async ({
   const userAlreadyExists = await userRepo.findOneBy({ name });
   const hashedPassword = hashSync(password!, 10);
 
-  console.log(hashedPassword);
-
   if (userAlreadyExists && userAlreadyExists.isActive) {
     throw new AppError(409, "Usuário já existe no banco de dados");
   }

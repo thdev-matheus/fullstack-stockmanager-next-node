@@ -31,10 +31,14 @@ export const updateUserValidationFieldsMiddleware =
 
       next();
     } catch (err: any) {
-      return res.status(400).json({
-        status: "Error",
-        code: 400,
-        message: err.errors?.join(", "),
-      });
+      if (err instanceof AppError) {
+        throw new AppError(err.statusCode, err.message);
+      } else {
+        return res.status(400).json({
+          status: "Error",
+          code: 400,
+          message: err.errors?.join(", "),
+        });
+      }
     }
   };
