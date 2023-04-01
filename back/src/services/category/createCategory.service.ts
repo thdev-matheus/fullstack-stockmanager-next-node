@@ -23,5 +23,10 @@ export const createCategoryService = async ({
 
   await categoryRepo.save(newCategory);
 
-  return newCategory;
+  const category = await categoryRepo.findOne({
+    where: { name },
+    relations: { products: true },
+  });
+
+  return category!;
 };
