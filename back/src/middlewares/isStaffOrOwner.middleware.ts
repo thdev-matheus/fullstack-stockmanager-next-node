@@ -11,10 +11,10 @@ export const isStaffOrOwnerMiddleware = (
 
   if (userIsStaff || (id && userId === id)) {
     next();
+  } else {
+    throw new AppError(
+      401,
+      "Esta rota só pode ser acessada por um staff de manutenção de código autorizado ou pelo dono do recurso"
+    );
   }
-
-  throw new AppError(
-    401,
-    "Esta rota só pode ser acessada por um staff de manutenção de código autorizado ou pelo dono do recurso"
-  );
 };

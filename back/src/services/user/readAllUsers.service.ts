@@ -3,19 +3,39 @@ import { User } from "../../entities/user";
 
 export const readAllUsersService = async (
   currentURL: string,
-  page: number = 1,
-  limit: number = 5
+  page: number,
+  limit: number
 ) => {
+  if (!page) {
+    page = 1;
+  }
+
+  if (!limit) {
+    limit = 5;
+  }
+
   page = Number(page);
   limit = Number(limit);
 
   const userRepo = AppDataSource.getRepository(User);
   const count = await userRepo.count();
 
-  page < 1 || (page * limit > count && (page = 1));
-  limit < 1 && (limit = 5);
+  if (page < 1 || page * limit > count) {
+    page = 1;
+  }
+
+  if (limit < 1) {
+    limit = 5;
+  }
 
   const skip = (page - 1) * limit;
+
+  console.log(page);
+  console.log(typeof page);
+  console.log(limit);
+  console.log(typeof limit);
+  console.log(skip);
+  console.log(typeof skip);
 
   const users = await userRepo.find({
     skip,
