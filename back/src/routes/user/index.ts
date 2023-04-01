@@ -18,25 +18,27 @@ import {
 const router = Router();
 
 export const userRoutes = (): Router => {
-  router.use(isAuthenticatedMiddleware, isStaffOrOwnerMiddleware);
+  router.use(isAuthenticatedMiddleware);
 
   router.post(
     "",
+    isStaffOrOwnerMiddleware,
     createUserValidationFieldsMiddleware(createUserSchema),
     createUserController
   );
 
-  router.get("", readAllUsersController);
+  router.get("", isStaffOrOwnerMiddleware, readAllUsersController);
 
-  router.get("/:userId", retrieveUserController);
+  router.get("/:userId", isStaffOrOwnerMiddleware, retrieveUserController);
 
   router.patch(
     "/:userId",
+    isStaffOrOwnerMiddleware,
     updateUserValidationFieldsMiddleware(updateUserSchema),
     updateUserController
   );
 
-  router.delete("/:userId", deleteUserController);
+  router.delete("/:userId", isStaffOrOwnerMiddleware, deleteUserController);
 
   return router;
 };
