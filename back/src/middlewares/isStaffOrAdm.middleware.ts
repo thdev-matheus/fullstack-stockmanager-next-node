@@ -8,7 +8,7 @@ export const isStaffOrAdmMiddleware = (
 ) => {
   const { userIsAdm, userIsStaff } = req;
 
-  if (!userIsStaff || !userIsAdm) {
+  if (!userIsStaff && !userIsAdm) {
     throw new AppError(
       401,
       "Esta rota só pode ser acessada por um administrador deste sistema"
