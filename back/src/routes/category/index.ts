@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.middleware";
-import { isAdmMiddleware } from "../../middlewares/isAdm.middleware";
+import { isStaffOrAdmMiddleware } from "../../middlewares/isStaffOrAdm.middleware";
 
 import { createCategoryController } from "../../controllers/category/createCategory.controller";
 import { readAllCategoriesController } from "../../controllers/category/readAllCategories.controller";
@@ -14,7 +14,7 @@ export const categoryRoutes = () => {
   router.get("", readAllCategoriesController);
   router.get("/:categoryId", retrieveCategoryController);
 
-  router.use(isAdmMiddleware);
+  router.use(isStaffOrAdmMiddleware);
 
   router.post("", createCategoryController);
 
