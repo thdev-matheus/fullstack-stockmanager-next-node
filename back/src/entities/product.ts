@@ -21,9 +21,6 @@ export class Product {
   @Column({ type: "int", nullable: false, default: 0 })
   stock!: number;
 
-  @Column({ type: "boolean", nullable: false, default: true })
-  isActive!: boolean;
-
   @Column({ type: "float", nullable: false })
   purchasePrice!: number;
 
