@@ -10,10 +10,7 @@ import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.mid
 import { isStaffOrOwnerMiddleware } from "../../middlewares/isStaffOrOwner.middleware";
 import { updateUserValidationFieldsMiddleware } from "../../middlewares/updateUserValidationFields.middleware";
 
-import {
-  createUserSchema,
-  updateUserSchema,
-} from "../../schemas/createUser.schema";
+import { createUserSchema, updateUserSchema } from "../../schemas/user.schema";
 
 const router = Router();
 
