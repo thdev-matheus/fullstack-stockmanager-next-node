@@ -11,10 +11,7 @@ export const retrieveCategoryService = async (categoryId: string) => {
   }
 
   const categoryRepo = AppDataSource.getRepository(Category);
-  const category = await categoryRepo.findOne({
-    where: { id: categoryId },
-    relations: { products: true },
-  });
+  const category = await categoryRepo.findOneBy({ id: categoryId });
 
   if (!category) {
     throw new AppError(404, "categoria não encontrada");

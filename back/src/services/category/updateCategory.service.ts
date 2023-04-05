@@ -27,10 +27,7 @@ export const updateCategoryService = async (
     name,
   });
 
-  const updatedCategory = await categoryRepo.findOne({
-    where: { id: categoryId },
-    relations: { products: true },
-  });
+  const updatedCategory = await categoryRepo.findOneBy({ id: categoryId });
 
   return updatedCategory!;
 };
