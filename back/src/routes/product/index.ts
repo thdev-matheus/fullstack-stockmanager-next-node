@@ -10,6 +10,7 @@ import {
 import { readAllProductsController } from "../../controllers/product/readAllProducts.controller";
 import { updateProductValidationFieldsMiddleware } from "../../middlewares/updateProductValidationFields.middleware";
 import { updateProductController } from "../../controllers/product/updateProduct.controller";
+import { deleteProductController } from "../../controllers/product/deleteProduct.controller";
 
 const router = Router();
 
@@ -35,6 +36,8 @@ export const productRoutes = () => {
     updateProductValidationFieldsMiddleware(updateProductSchema),
     updateProductController
   );
+
+  router.delete("/:productId", deleteProductController);
 
   return router;
 };
