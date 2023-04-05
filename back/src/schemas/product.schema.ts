@@ -4,7 +4,7 @@ import { IProductRequest } from "../types/product";
 export const createProductSchema: yup.SchemaOf<IProductRequest> = yup
   .object()
   .shape({
-    categoryName: yup.string().optional(),
+    categoryName: yup.string().optional().nullable(),
 
     name: yup.string().required("name: campo obrigatório"),
 
@@ -21,7 +21,7 @@ export const createProductSchema: yup.SchemaOf<IProductRequest> = yup
 export const updateProductSchema: yup.SchemaOf<IProductRequest> = yup
   .object()
   .shape({
-    categoryName: yup.string().optional(),
+    categoryName: yup.string().optional().nullable(),
 
     name: yup.string().optional(),
 

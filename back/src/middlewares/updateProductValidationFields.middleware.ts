@@ -9,20 +9,20 @@ export const updateProductValidationFieldsMiddleware =
     try {
       const data: IProductRequest = req.body;
 
+      await schema.validate(data, {
+        abortEarly: false,
+        stripUnknown: true,
+      });
+
       if (
         !data.name &&
-        !data.categoryName &&
+        data.categoryName === undefined &&
         !data.purchasePrice &&
         !data.salePrice &&
         !data.stock
       ) {
         throw new AppError(406, "Não há nada para atualizar");
       }
-
-      await schema.validate(data, {
-        abortEarly: false,
-        stripUnknown: true,
-      });
 
       next();
     } catch (err: any) {

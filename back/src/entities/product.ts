@@ -29,7 +29,7 @@ export class Product {
 
   @ManyToOne((type) => Category, { nullable: true, onDelete: "SET NULL" })
   @JoinColumn()
-  category!: Category;
+  category!: Category | null;
 
   @CreateDateColumn()
   createdAt!: Date;

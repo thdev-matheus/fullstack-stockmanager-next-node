@@ -13,26 +13,31 @@ export const updateProductService = async (
 
   const categoryRepo = AppDataSource.getRepository(Category);
   const productRepo = AppDataSource.getRepository(Product);
-
-  let category =
-    categoryName && (await categoryRepo.findOneBy({ name: categoryName }));
-
-  if (categoryName && !category) {
-    throw new AppError(404, "categoria fornecida não encontrada");
-  }
-
-  if (!category) {
-    category = undefined;
-  }
-
-  const product = await productRepo.findOneBy({ name });
+  const product = await productRepo.findOne({
+    where: { id },
+    relations: { category: true },
+  });
 
   if (!product) {
     throw new AppError(404, "produto não encontrado");
   }
 
+  let category;
+
+  if (typeof categoryName === "string") {
+    category = await categoryRepo.findOneBy({ name: categoryName });
+  } else if (categoryName === undefined) {
+    category = product.category;
+  } else if (categoryName === null) {
+    category = categoryName;
+  }
+
+  if (typeof categoryName === "string" && !category) {
+    throw new AppError(404, "categoria fornecida não encontrada");
+  }
+
   await productRepo.update(id, {
-    category: category || product.category,
+    category,
     name: name || product.name,
     purchasePrice: purchasePrice || product.purchasePrice,
     salePrice: salePrice || product.salePrice,
