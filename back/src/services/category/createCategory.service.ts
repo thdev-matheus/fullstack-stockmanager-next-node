@@ -10,6 +10,8 @@ export const createCategoryService = async ({
     throw new AppError(400, "O campo nome é obrigatório");
   }
 
+  name = name.toLowerCase();
+
   const categoryRepo = AppDataSource.getRepository(Category);
   const categoryAlreadyExists = await categoryRepo.findOneBy({ name });
 

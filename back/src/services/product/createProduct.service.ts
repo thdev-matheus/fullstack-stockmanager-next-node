@@ -14,6 +14,9 @@ export const createProductService = async ({
   const categoryRepo = AppDataSource.getRepository(Category);
   const productRepo = AppDataSource.getRepository(Product);
 
+  name = name!.toLowerCase();
+  categoryName && (categoryName = categoryName.toLowerCase());
+
   let category =
     categoryName && (await categoryRepo.findOneBy({ name: categoryName }));
 
@@ -41,5 +44,10 @@ export const createProductService = async ({
 
   await productRepo.save(newProduct);
 
-  return newProduct;
+  const product = await productRepo.findOne({
+    where: { name },
+    relations: { category: true },
+  });
+
+  return product;
 };
