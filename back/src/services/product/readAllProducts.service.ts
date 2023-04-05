@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
-import { User } from "../../entities/user";
+import { Product } from "../../entities/product";
 
-export const readAllUsersService = async (
+export const readAllProductsService = async (
   currentURL: string,
   page: number,
   limit: number
@@ -12,15 +12,15 @@ export const readAllUsersService = async (
   page = Number(page);
   limit = Number(limit);
 
-  const userRepo = AppDataSource.getRepository(User);
-  const count = await userRepo.count();
+  const productRepo = AppDataSource.getRepository(Product);
+  const count = await productRepo.count();
 
   page < 1 || (page * limit > count && (page = 1));
   limit < 1 && (limit = 5);
 
   const skip = (page - 1) * limit;
 
-  const users = await userRepo.find({
+  const products = await productRepo.find({
     skip,
     take: limit,
     order: { createdAt: "desc" },
@@ -28,7 +28,7 @@ export const readAllUsersService = async (
 
   const next =
     page * limit <= count
-      ? `${currentURL}?page=${page + 1}&limit=${limit}`
+      ? `${currentURL}?pages=${page + 1}&limit=${limit}`
       : null;
 
   const previous =
@@ -40,7 +40,7 @@ export const readAllUsersService = async (
     next,
     previous,
     limit,
-    results: users,
+    results: products,
   };
 
   return response;
