@@ -16,5 +16,5 @@ export interface IProductRequest {
   stock?: number;
   purchasePrice?: number;
   salePrice?: number;
-  categoryName?: string | null;
+  categoryName?: string;
 }
