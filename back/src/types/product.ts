@@ -18,3 +18,10 @@ export interface IProductRequest {
   salePrice?: number;
   categoryName?: string | null;
 }
+
+export interface IFilterProduct {
+  name?: string;
+  stockLess?: number;
+  stockMore?: number;
+  categoryName?: string;
+}
