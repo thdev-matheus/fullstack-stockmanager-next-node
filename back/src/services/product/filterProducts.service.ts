@@ -3,7 +3,7 @@ import { AppError } from "../../errors";
 import { Product } from "../../entities/product";
 import { Category } from "../../entities/category";
 import { IFilterProduct } from "../../types/product";
-import { LessThanOrEqual, Like, MoreThan } from "typeorm";
+import { Between, LessThanOrEqual, Like, MoreThanOrEqual } from "typeorm";
 
 export const filterProductsService = async (
   { categoryName, name, stockLess, stockMore }: IFilterProduct,
@@ -11,6 +11,10 @@ export const filterProductsService = async (
   page: number,
   limit: number
 ) => {
+  if (!categoryName && !name && !stockLess && !stockMore) {
+    throw new AppError(400, "Nenhum dado para filtrar");
+  }
+
   categoryName && (categoryName = categoryName.toLowerCase());
   name && (name = name.toLowerCase());
   !page && (page = 1);
@@ -36,11 +40,14 @@ export const filterProductsService = async (
     relations: { category: true },
     where: {
       name: name ? Like(`%${name}%`) : undefined,
-      stock: stockLess
-        ? LessThanOrEqual(stockLess)
-        : stockMore
-        ? MoreThan(stockMore)
-        : undefined,
+      stock:
+        stockLess && stockMore
+          ? Between(stockLess + 1, stockMore - 1)
+          : stockLess && !stockMore
+          ? LessThanOrEqual(stockLess)
+          : stockMore && !stockLess
+          ? MoreThanOrEqual(stockMore)
+          : undefined,
       category: {
         name: categoryName ? Like(`%${categoryName}%`) : undefined,
       },
@@ -59,11 +66,14 @@ export const filterProductsService = async (
     relations: { category: true },
     where: {
       name: name ? Like(`%${name}%`) : undefined,
-      stock: stockLess
-        ? LessThanOrEqual(stockLess)
-        : stockMore
-        ? MoreThan(stockMore)
-        : undefined,
+      stock:
+        stockLess && stockMore
+          ? Between(stockLess + 1, stockMore - 1)
+          : stockLess && !stockMore
+          ? LessThanOrEqual(stockLess)
+          : stockMore && !stockLess
+          ? MoreThanOrEqual(stockMore)
+          : undefined,
       category: {
         name: categoryName ? Like(`%${categoryName}%`) : undefined,
       },
