@@ -86,4 +86,6 @@ export const filterProductsService = async (
     limit,
     results: products,
   };
+
+  return response;
 };
