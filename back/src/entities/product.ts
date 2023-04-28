@@ -6,12 +6,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
-  ManyToMany,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./category";
 import { Sale } from "./sale";
-import { SaleProduct } from "./sale-products";
+import { SaleProduct } from "./sale-product";
 import { Exclude } from "class-transformer";
 
 @Entity()

@@ -6,12 +6,10 @@ import {
   Entity,
   ManyToOne,
   JoinColumn,
-  ManyToMany,
 } from "typeorm";
-import { Product } from "./product";
 import { User } from "./user";
 import { v4 as uuid } from "uuid";
-import { SaleProduct } from "./sale-products";
+import { SaleProduct } from "./sale-product";
 import { Exclude } from "class-transformer";
 
 @Entity()
@@ -25,6 +23,9 @@ export class Sale {
   @UpdateDateColumn()
   updatedAt!: Date;
 
+  @Column({ nullable: true })
+  description!: string;
+
   @ManyToOne(() => User, {
     nullable: false,
     eager: true,
@@ -33,9 +34,8 @@ export class Sale {
   @JoinColumn()
   user!: User;
 
-  @Exclude()
   @ManyToOne(() => SaleProduct)
-  saleProducts!: SaleProduct[];
+  products!: SaleProduct[];
 
   constructor() {
     this.id = uuid();

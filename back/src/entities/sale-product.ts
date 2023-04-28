@@ -2,13 +2,15 @@ import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Sale } from "./sale";
 import { Product } from "./product";
+import { Exclude } from "class-transformer";
 
 @Entity()
 export class SaleProduct {
   @PrimaryColumn()
   id: string;
 
-  @OneToMany(() => Sale, (sale) => sale.saleProducts, {
+  @Exclude()
+  @OneToMany(() => Sale, (sale) => sale.products, {
     onDelete: "CASCADE",
     nullable: false,
   })
@@ -20,7 +22,7 @@ export class SaleProduct {
   })
   product!: Product;
 
-  @Column()
+  @Column({ nullable: false, default: 1 })
   quantity!: number;
 
   constructor() {
