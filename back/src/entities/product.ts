@@ -6,9 +6,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
+  ManyToMany,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./category";
+import { Sale } from "./sale";
+import { SaleProduct } from "./sale-products";
+import { Exclude } from "class-transformer";
 
 @Entity()
 export class Product {
@@ -30,6 +34,10 @@ export class Product {
   @ManyToOne((type) => Category, { nullable: true, onDelete: "SET NULL" })
   @JoinColumn()
   category!: Category | null;
+
+  @Exclude()
+  @ManyToOne(() => SaleProduct)
+  saleProducts!: SaleProduct[];
 
   @CreateDateColumn()
   createdAt!: Date;

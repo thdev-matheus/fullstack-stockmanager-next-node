@@ -4,9 +4,11 @@ import {
   PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
+import { Sale } from "./sale";
 
 @Entity()
 export class User {
@@ -34,6 +36,9 @@ export class User {
 
   @Column({ type: "boolean", default: true })
   isActive!: boolean;
+
+  @OneToMany(() => Sale, (sale) => sale.user, { onDelete: "SET NULL" })
+  sales!: Sale[];
 
   @CreateDateColumn()
   createdAt!: Date;
