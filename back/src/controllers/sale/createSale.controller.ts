@@ -7,7 +7,7 @@ export const createSaleController = async (req: Request, res: Response) => {
   const data: ISaleRequest = req.body;
   const { userId } = req;
 
-  await createSaleService(data, userId!);
+  const sale = await createSaleService(data, userId!);
 
-  return res.status(200).json({ message: "deu certo" });
+  return res.status(200).json(instanceToPlain(sale));
 };

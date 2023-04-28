@@ -6,6 +6,7 @@ import {
   Entity,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { User } from "./user";
 import { v4 as uuid } from "uuid";
@@ -34,7 +35,9 @@ export class Sale {
   @JoinColumn()
   user!: User;
 
-  @ManyToOne(() => SaleProduct)
+  @OneToMany(() => SaleProduct, (saleProduct) => saleProduct.sale, {
+    onDelete: "CASCADE",
+  })
   products!: SaleProduct[];
 
   constructor() {

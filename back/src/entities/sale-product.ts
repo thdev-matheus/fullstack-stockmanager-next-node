@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Sale } from "./sale";
 import { Product } from "./product";
@@ -10,16 +10,10 @@ export class SaleProduct {
   id: string;
 
   @Exclude()
-  @OneToMany(() => Sale, (sale) => sale.products, {
-    onDelete: "CASCADE",
-    nullable: false,
-  })
+  @ManyToOne(() => Sale, { onDelete: "CASCADE" })
   sale!: Sale;
 
-  @OneToMany(() => Product, (product) => product.saleProducts, {
-    onDelete: "NO ACTION",
-    nullable: false,
-  })
+  @ManyToOne(() => Product, { onDelete: "CASCADE", eager: true })
   product!: Product;
 
   @Column({ nullable: false, default: 1 })

@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./category";
@@ -35,7 +36,7 @@ export class Product {
   category!: Category | null;
 
   @Exclude()
-  @ManyToOne(() => SaleProduct)
+  @OneToMany(() => SaleProduct, (saleProduct) => saleProduct.product)
   saleProducts!: SaleProduct[];
 
   @CreateDateColumn()
