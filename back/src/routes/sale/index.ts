@@ -20,5 +20,7 @@ export const saleRoutes = () => {
 
   router.get("");
 
+  router.delete("");
+
   return router;
 };
