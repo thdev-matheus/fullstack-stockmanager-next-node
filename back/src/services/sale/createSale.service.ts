@@ -59,10 +59,10 @@ export const createSaleService = async (
   const response = {
     ...sale,
     products: [
-      ...sale!.products.map((sprod) => {
+      ...sale!.products.map((sProd) => {
         return {
-          quantity: sprod.quantity,
-          ...sprod.product,
+          quantity: sProd.quantity,
+          ...sProd.product,
         };
       }),
     ],

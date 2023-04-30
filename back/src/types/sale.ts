@@ -15,7 +15,7 @@ export interface ISaleRequest {
   products: ISaleProduct[];
 }
 
-interface ISaleProduct {
+export interface ISaleProduct {
   productId: string;
   quantity: number;
 }
