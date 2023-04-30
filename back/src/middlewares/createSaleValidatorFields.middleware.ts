@@ -5,6 +5,8 @@ import { ISaleRequest } from "../types/sale";
 export const createSaleValidationFieldsMiddleware =
   (schema: SchemaOf<ISaleRequest>) =>
   async (req: Request, res: Response, next: NextFunction) => {
+    console.log("midd");
+
     try {
       const data: ISaleRequest = req.body;
 
