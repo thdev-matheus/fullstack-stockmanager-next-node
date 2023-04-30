@@ -24,7 +24,7 @@ export const readAllSalesService = async (
     skip,
     take: limit,
     order: { createdAt: "desc" },
-    relations: { products: true, user: true },
+    relations: { user: true, products: true },
   });
 
   const next =

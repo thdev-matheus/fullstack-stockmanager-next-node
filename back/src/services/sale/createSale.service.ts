@@ -52,7 +52,7 @@ export const createSaleService = async (
   }
 
   const sale = await saleRepo.findOne({
-    relations: { products: true, user: true },
+    relations: { user: true, products: true },
     where: { id: newSale.id },
   });
 
