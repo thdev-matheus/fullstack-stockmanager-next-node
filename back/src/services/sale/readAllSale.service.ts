@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { Sale } from "../../entities/sale";
 
-export const readAllUsersService = async (
+export const readAllSalesService = async (
   currentURL: string,
   page: number,
   limit: number
