@@ -4,6 +4,10 @@ import { Product } from "../../entities/product";
 import { AppError } from "../../errors";
 
 export const deleteSaleService = async (saleId: string) => {
+  if (!saleId) {
+    throw new AppError(400, "id da venda não foi passado nos parâmetros");
+  }
+
   const saleRepo = AppDataSource.getRepository(Sale);
   const productRepo = AppDataSource.getRepository(Product);
 
