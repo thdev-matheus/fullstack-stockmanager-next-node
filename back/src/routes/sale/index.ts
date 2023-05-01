@@ -6,6 +6,7 @@ import { createSaleValidationFieldsMiddleware } from "../../middlewares/createSa
 import { createSaleSchema } from "../../schemas/sale.schema";
 import { readAllSalesController } from "../../controllers/sale/readAllSales.controller";
 import { deleteSaleController } from "../../controllers/sale/deleteSale.controller";
+import { retrieveSaleController } from "../../controllers/sale/retrieveSale.controller";
 
 const router = Router();
 
@@ -21,6 +22,8 @@ export const saleRoutes = () => {
   router.use(isStaffOrAdmMiddleware);
 
   router.get("", readAllSalesController);
+
+  router.get("/:saleId", retrieveSaleController);
 
   router.delete("/:saleId", deleteSaleController);
 
