@@ -42,6 +42,15 @@ export const createSaleService = async (
       );
     }
 
+    if (prod.quantity > product.stock) {
+      await saleRepo.delete(newSale.id);
+
+      throw new AppError(
+        400,
+        "Venda não pôde ser criada pois não há estoque suficiente para suprir uma das quantidades pedidas."
+      );
+    }
+
     const newSaleProduct = saleProductRepo.create({
       product,
       sale: newSale,
