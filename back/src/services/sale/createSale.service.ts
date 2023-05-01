@@ -51,6 +51,25 @@ export const createSaleService = async (
     await saleProductRepo.save(newSaleProduct);
   }
 
+  for (let i = 0; i < products.length; i++) {
+    const prod = products[i];
+
+    const product = await productRepo.findOneBy({ id: prod.productId });
+
+    if (!product) {
+      await saleRepo.delete(newSale.id);
+
+      throw new AppError(
+        404,
+        "Venda não pôde ser criada pois um dos produtos não existe no banco de dados"
+      );
+    }
+
+    await productRepo.update(product.id, {
+      stock: product.stock - Math.trunc(prod.quantity),
+    });
+  }
+
   const sale = await saleRepo.findOne({
     relations: { user: true, products: true },
     where: { id: newSale.id },
