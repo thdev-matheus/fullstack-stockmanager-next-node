@@ -1,11 +1,30 @@
 import { AppDataSource } from "../data-source";
+import { Company } from "../entities/company";
 import { User } from "../entities/user";
 
 export const initStaff = async (): Promise<void> => {
   const userRepo = AppDataSource.getRepository(User);
+  const companyRepo = AppDataSource.getRepository(Company);
+
   const staffAlreadyExists = await userRepo.findOneBy({ name: "Theus" });
+  const companyAlreadyExists = await companyRepo.findOneBy({
+    name: "Stock Manager STAFF",
+  });
+
+  if (!companyAlreadyExists) {
+    const staffCompany = companyRepo.create({
+      name: "Stock Manager STAFF",
+      image: "https://i.ibb.co/s18dn80/staff-sticker.jpg",
+    });
+
+    await companyRepo.save(staffCompany);
+  }
 
   if (!staffAlreadyExists) {
+    const company = await companyRepo.findOneBy({
+      name: "Stock Manager STAFF",
+    });
+
     const staff = userRepo.create({
       name: "Theus",
       password: "$2b$10$4KiN0bfjIedoVdbWAaC2PegM5zpwjAoKV1NGBDItldWsO/WOomGIW",
@@ -13,10 +32,12 @@ export const initStaff = async (): Promise<void> => {
       securityAnswer: "23/02/2019",
       isAdm: true,
       isStaff: true,
+      company: company!,
     });
 
     await userRepo.save(staff);
 
+    console.log("Empresa staff criada com sucesso");
     console.log("Usuário staff criado com sucesso");
   } else {
     console.log("Usuário staff já existente no banco de dados");

@@ -16,8 +16,11 @@ export class Company {
   @PrimaryColumn()
   id: string;
 
-  @Column()
+  @Column({ type: "varchar", length: 150, unique: true, nullable: false })
   name!: string;
+
+  @Column({ nullable: true })
+  image!: string;
 
   @CreateDateColumn()
   createdAt!: Date;
