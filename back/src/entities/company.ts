@@ -9,6 +9,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { User } from "./user";
 import { Product } from "./product";
+import { Sale } from "./sale";
 
 @Entity()
 export class Company {
@@ -33,6 +34,11 @@ export class Company {
     onDelete: "CASCADE",
   })
   products!: Product[];
+
+  @OneToMany(() => Sale, (sale) => sale.company, {
+    onDelete: "CASCADE",
+  })
+  sales!: Sale[];
 
   constructor() {
     this.id = uuid();

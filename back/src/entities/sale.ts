@@ -12,6 +12,7 @@ import { User } from "./user";
 import { v4 as uuid } from "uuid";
 import { SaleProduct } from "./sale-product";
 import { Exclude } from "class-transformer";
+import { Company } from "./company";
 
 @Entity()
 export class Sale {
@@ -34,6 +35,13 @@ export class Sale {
   })
   @JoinColumn()
   user!: User;
+
+  @ManyToOne(() => Company, {
+    nullable: false,
+    eager: true,
+    onDelete: "CASCADE",
+  })
+  company!: Company;
 
   @OneToMany(() => SaleProduct, (saleProduct) => saleProduct.sale, {
     onDelete: "CASCADE",
