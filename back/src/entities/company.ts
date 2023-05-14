@@ -8,6 +8,7 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { User } from "./user";
+import { Product } from "./product";
 
 @Entity()
 export class Company {
@@ -25,9 +26,13 @@ export class Company {
 
   @OneToMany(() => User, (user) => user.company, {
     onDelete: "CASCADE",
-    nullable: false,
   })
-  user!: User;
+  users!: User[];
+
+  @OneToMany(() => Product, (product) => product.company, {
+    onDelete: "CASCADE",
+  })
+  products!: Product[];
 
   constructor() {
     this.id = uuid();
