@@ -11,7 +11,10 @@ export const userLoginService = async ({ name, password }: IUserLogin) => {
   }
 
   const userRepo = AppDataSource.getRepository(User);
-  const user = await userRepo.findOneBy({ name });
+  const user = await userRepo.findOne({
+    where: { name },
+    relations: { company: true },
+  });
 
   if (!user) {
     throw new AppError(401, "nome ou senha inválidos");
@@ -34,6 +37,7 @@ export const userLoginService = async ({ name, password }: IUserLogin) => {
       userName: user.name,
       userIsAdm: user.isAdm,
       userIsStaff: user.isStaff,
+      userCompanyId: user.company.id,
     },
     process.env.SECRET_KEY!,
     { expiresIn: "24h" }
