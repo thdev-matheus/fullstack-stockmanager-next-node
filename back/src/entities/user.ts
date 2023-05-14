@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  ManyToOne,
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
 import { Sale } from "./sale";
+import { Company } from "./company";
 
 @Entity()
 export class User {
@@ -39,6 +41,13 @@ export class User {
 
   @OneToMany(() => Sale, (sale) => sale.user, { onDelete: "SET NULL" })
   sales!: Sale[];
+
+  @ManyToOne(() => Company, {
+    nullable: false,
+    eager: true,
+    onDelete: "CASCADE",
+  })
+  company!: Company;
 
   @CreateDateColumn()
   createdAt!: Date;
