@@ -1,6 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Product } from "./product";
+import { Company } from "./company";
 
 @Entity()
 export class Category {
@@ -14,6 +15,13 @@ export class Category {
     onDelete: "SET NULL",
   })
   products!: Product[];
+
+  @ManyToOne(() => Company, {
+    nullable: false,
+    eager: true,
+    onDelete: "CASCADE",
+  })
+  company!: Company;
 
   constructor() {
     this.id = uuid();

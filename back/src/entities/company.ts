@@ -10,6 +10,7 @@ import { v4 as uuid } from "uuid";
 import { User } from "./user";
 import { Product } from "./product";
 import { Sale } from "./sale";
+import { Category } from "./category";
 
 @Entity()
 export class Company {
@@ -43,6 +44,10 @@ export class Company {
   })
   sales!: Sale[];
 
+  @OneToMany(() => Category, (category) => category.company, {
+    onDelete: "CASCADE",
+  })
+  categories!: Category[];
   constructor() {
     this.id = uuid();
   }
