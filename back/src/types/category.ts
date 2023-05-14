@@ -8,4 +8,5 @@ export interface ICategory {
 
 export interface ICategoryRequest {
   name: string;
+  userCompanyId: string;
 }

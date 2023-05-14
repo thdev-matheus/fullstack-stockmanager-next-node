@@ -3,8 +3,12 @@ import { createCategoryService } from "../../services/category/createCategory.se
 
 export const createCategoryController = async (req: Request, res: Response) => {
   const { name } = req.body;
+  const { userCompanyId } = req;
 
-  const createdCategory = await createCategoryService({ name });
+  const createdCategory = await createCategoryService({
+    name,
+    userCompanyId: userCompanyId!,
+  });
 
   return res.status(201).json(createdCategory);
 };

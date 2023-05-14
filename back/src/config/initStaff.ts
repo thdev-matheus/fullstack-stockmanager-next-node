@@ -22,7 +22,7 @@ export const initStaff = async (): Promise<void> => {
 
   if (!staffAlreadyExists) {
     const company = await companyRepo.findOneBy({
-      name: "Stock Manager STAFF",
+      name: "stock manager staff",
     });
 
     const staff = userRepo.create({
