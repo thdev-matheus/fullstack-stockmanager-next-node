@@ -3,6 +3,7 @@ import { AppError } from "../../errors";
 import { User } from "../../entities/user";
 import { IUserRequest, IUser } from "../../types/user";
 import { hashSync } from "bcrypt";
+import { Company } from "../../entities/company";
 
 export const createUserService = async ({
   isAdm,
@@ -10,9 +11,14 @@ export const createUserService = async ({
   password,
   securityAnswer,
   securityAsk,
+  userCompanyId,
 }: IUserRequest): Promise<IUser> => {
   const userRepo = AppDataSource.getRepository(User);
+  const companyRepo = AppDataSource.getRepository(Company);
+
   const userAlreadyExists = await userRepo.findOneBy({ name });
+  const company = await companyRepo.findOneBy({ id: userCompanyId });
+
   const hashedPassword = hashSync(password!, 10);
 
   if (userAlreadyExists && userAlreadyExists.isActive) {
@@ -34,12 +40,17 @@ export const createUserService = async ({
     return user!;
   }
 
+  if (!company) {
+    throw new AppError(404, "empresa não localizada no banco de dados");
+  }
+
   const newUser = userRepo.create({
     name,
     password: hashedPassword,
     securityAnswer,
     securityAsk,
     isAdm,
+    company,
   });
 
   await userRepo.save(newUser);

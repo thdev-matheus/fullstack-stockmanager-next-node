@@ -3,7 +3,9 @@ import { Category } from "../../entities/category";
 import { Company } from "../../entities/company";
 import { AppError } from "../../errors";
 
-export const readAllCategoriesService = async (userCompanyId: string) => {
+export const readAllCategoriesService = async (
+  userCompanyId: string | undefined
+) => {
   const categoryRepo = AppDataSource.getRepository(Category);
   const companyRepo = AppDataSource.getRepository(Company);
   const company = await companyRepo.findOneBy({ id: userCompanyId });
