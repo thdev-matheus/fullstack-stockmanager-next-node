@@ -24,6 +24,7 @@ export const readAllUsersService = async (
     skip,
     take: limit,
     order: { createdAt: "desc" },
+    relations: { company: true },
   });
 
   const next =
