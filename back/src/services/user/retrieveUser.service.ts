@@ -10,8 +10,5 @@ export const retrieveUserService = async (userId: string) => {
     throw new AppError(404, "usuário não encontrado");
   }
 
-  // console.log(user === null);
-  // console.log(user);
-
   return user;
 };
