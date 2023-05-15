@@ -8,12 +8,12 @@ export const initStaff = async (): Promise<void> => {
 
   const staffAlreadyExists = await userRepo.findOneBy({ name: "Theus" });
   const companyAlreadyExists = await companyRepo.findOneBy({
-    name: "Stock Manager STAFF",
+    name: "stock manager staff",
   });
 
   if (!companyAlreadyExists) {
     const staffCompany = companyRepo.create({
-      name: "Stock Manager STAFF",
+      name: "stock manager staff",
       image: "https://i.ibb.co/s18dn80/staff-sticker.jpg",
     });
 
@@ -24,6 +24,10 @@ export const initStaff = async (): Promise<void> => {
     const company = await companyRepo.findOneBy({
       name: "stock manager staff",
     });
+
+    // console.log("=====================================================");
+    // console.log(company);
+    // console.log("=====================================================");
 
     const staff = userRepo.create({
       name: "Theus",
@@ -40,6 +44,7 @@ export const initStaff = async (): Promise<void> => {
     console.log("Empresa staff criada com sucesso");
     console.log("Usuário staff criado com sucesso");
   } else {
+    console.log("Empresa já existente no banco de dados");
     console.log("Usuário staff já existente no banco de dados");
   }
 };

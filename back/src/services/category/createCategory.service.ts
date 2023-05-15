@@ -4,10 +4,10 @@ import { Category } from "../../entities/category";
 import { ICategory, ICategoryRequest } from "../../types/category";
 import { Company } from "../../entities/company";
 
-export const createCategoryService = async ({
-  name,
-  userCompanyId,
-}: ICategoryRequest): Promise<ICategory> => {
+export const createCategoryService = async (
+  { name }: ICategoryRequest,
+  userCompanyId: string
+): Promise<ICategory> => {
   if (!name) {
     throw new AppError(400, "O campo nome é obrigatório");
   }
