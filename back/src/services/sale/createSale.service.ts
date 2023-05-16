@@ -5,15 +5,18 @@ import { User } from "../../entities/user";
 import { Product } from "../../entities/product";
 import { SaleProduct } from "../../entities/sale-product";
 import { ISaleRequest } from "../../types/sale";
+import { Company } from "../../entities/company";
 
 export const createSaleService = async (
-  { description, products }: ISaleRequest,
-  userId: string
+  { description, products, companyId }: ISaleRequest,
+  userId: string,
+  userCompanyId: string
 ) => {
   const userRepo = AppDataSource.getRepository(User);
   const saleRepo = AppDataSource.getRepository(Sale);
   const productRepo = AppDataSource.getRepository(Product);
   const saleProductRepo = AppDataSource.getRepository(SaleProduct);
+  const companyRepo = AppDataSource.getRepository(Company);
 
   const user = await userRepo.findOneBy({ id: userId });
 
@@ -21,9 +24,18 @@ export const createSaleService = async (
     throw new AppError(404, "usuário não encontrado!");
   }
 
+  const company = await companyRepo.findOneBy({
+    id: companyId ? companyId : userCompanyId,
+  });
+
+  if (!company) {
+    throw new AppError(404, "empresa não encontrada");
+  }
+
   const newSale = saleRepo.create({
     user,
     description,
+    company,
   });
 
   await saleRepo.save(newSale);
