@@ -17,26 +17,14 @@ export const readAllCategoriesService = async (
     throw new AppError(404, "empresa ão localizada no banco de dados");
   }
 
-  if (company.name === "stock manager staff") {
-    const categories = await categoryRepo.find();
-    const countCategories = await categoryRepo.count();
+  const categories = await categoryRepo.find({
+    where: { company: { id: company.id } },
+  });
 
-    const response = {
-      counter: countCategories,
-      results: categories,
-    };
-    return response;
-  } else {
-    const categories = await categoryRepo.find({
-      where: { company: { name: company.name } },
-      relations: { company: true },
-    });
+  const response = {
+    counter: categories.length,
+    results: categories,
+  };
 
-    const response = {
-      counter: categories.length,
-      results: categories,
-    };
-
-    return response;
-  }
+  return response;
 };

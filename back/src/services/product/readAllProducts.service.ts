@@ -4,7 +4,9 @@ import { Product } from "../../entities/product";
 export const readAllProductsService = async (
   currentURL: string,
   page: number,
-  limit: number
+  limit: number,
+  userCompanyId: string,
+  companyId?: string
 ) => {
   !page && (page = 1);
   !limit && (limit = 5);
@@ -13,7 +15,9 @@ export const readAllProductsService = async (
   limit = Number(limit);
 
   const productRepo = AppDataSource.getRepository(Product);
-  const count = await productRepo.count();
+  const count = await productRepo.count({
+    where: { company: { id: companyId ? companyId : userCompanyId } },
+  });
 
   page < 1 || (page * limit > count && (page = 1));
   limit < 1 && (limit = 5);
@@ -25,6 +29,7 @@ export const readAllProductsService = async (
     take: limit,
     order: { createdAt: "desc" },
     relations: { category: true },
+    where: { company: { id: companyId ? companyId : userCompanyId } },
   });
 
   const next =

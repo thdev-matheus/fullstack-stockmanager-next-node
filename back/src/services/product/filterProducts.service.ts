@@ -4,12 +4,14 @@ import { Product } from "../../entities/product";
 import { Category } from "../../entities/category";
 import { IFilterProduct } from "../../types/product";
 import { Between, LessThanOrEqual, Like, MoreThanOrEqual } from "typeorm";
+import { Company } from "../../entities/company";
 
 export const filterProductsService = async (
-  { categoryName, name, stockLess, stockMore }: IFilterProduct,
+  { categoryName, name, stockLess, stockMore, companyId }: IFilterProduct,
   currentURL: string,
   page: number,
-  limit: number
+  limit: number,
+  userCompanyId: string
 ) => {
   if (!categoryName && !name && !stockLess && !stockMore) {
     throw new AppError(400, "Nenhum dado para filtrar");
@@ -25,6 +27,16 @@ export const filterProductsService = async (
 
   const productRepo = AppDataSource.getRepository(Product);
   const categoryRepo = AppDataSource.getRepository(Category);
+  const companyRepo = AppDataSource.getRepository(Company);
+
+  const company = await companyRepo.findOneBy({
+    id: companyId ? companyId : userCompanyId,
+  });
+
+  if (!company) {
+    throw new AppError(404, "empresa não encontrada");
+  }
+
   let category = undefined;
 
   categoryName && (category = categoryRepo.findOneBy({ name: categoryName }));
@@ -37,8 +49,9 @@ export const filterProductsService = async (
   }
 
   const count = await productRepo.count({
-    relations: { category: true },
+    relations: { category: true, company: true },
     where: {
+      company: { id: company.id },
       name: name ? Like(`%${name}%`) : undefined,
       stock:
         stockLess && stockMore
@@ -63,8 +76,9 @@ export const filterProductsService = async (
     skip,
     take: limit,
     order: { createdAt: "desc" },
-    relations: { category: true },
+    relations: { category: true, company: true },
     where: {
+      company: { id: company.id },
       name: name ? Like(`%${name}%`) : undefined,
       stock:
         stockLess && stockMore

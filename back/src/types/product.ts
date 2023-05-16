@@ -17,6 +17,7 @@ export interface IProductRequest {
   purchasePrice?: number;
   salePrice?: number;
   categoryName?: string | null;
+  companyId?: string | null;
 }
 
 export interface IFilterProduct {
@@ -24,4 +25,5 @@ export interface IFilterProduct {
   stockLess?: number;
   stockMore?: number;
   categoryName?: string;
+  companyId?: string;
 }
