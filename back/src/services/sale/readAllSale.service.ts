@@ -1,10 +1,14 @@
 import { AppDataSource } from "../../data-source";
+import { Company } from "../../entities/company";
 import { Sale } from "../../entities/sale";
+import { AppError } from "../../errors";
 
 export const readAllSalesService = async (
   currentURL: string,
   page: number,
-  limit: number
+  limit: number,
+  userCompanyId: string,
+  companyId?: string
 ) => {
   !page && (page = 1);
   !limit && (limit = 5);
@@ -13,7 +17,19 @@ export const readAllSalesService = async (
   limit = Number(limit);
 
   const saleRepo = AppDataSource.getRepository(Sale);
-  const count = await saleRepo.count();
+  const companyRepo = AppDataSource.getRepository(Company);
+
+  const company = await companyRepo.findOneBy({
+    id: companyId ? companyId : userCompanyId,
+  });
+
+  if (!company) {
+    throw new AppError(404, "empresa não encontrada");
+  }
+
+  const count = await saleRepo.count({
+    where: { company: { id: company.id } },
+  });
 
   page < 1 || (page * limit > count && (page = 1));
   limit < 1 && (limit = 5);
@@ -24,7 +40,8 @@ export const readAllSalesService = async (
     skip,
     take: limit,
     order: { createdAt: "desc" },
-    relations: { user: true, products: true },
+    relations: { user: true, products: true, company: true },
+    where: { company: { id: company.id } },
   });
 
   const next =
