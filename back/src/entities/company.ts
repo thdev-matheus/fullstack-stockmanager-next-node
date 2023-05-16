@@ -48,6 +48,7 @@ export class Company {
     onDelete: "CASCADE",
   })
   categories!: Category[];
+
   constructor() {
     this.id = uuid();
   }

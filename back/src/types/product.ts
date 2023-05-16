@@ -1,4 +1,6 @@
-import { Category } from "../entities/category";
+import { ICategory } from "./category";
+import { ICompany } from "./company";
+import { IUser } from "./user";
 
 export interface IProduct {
   id: string;
@@ -6,9 +8,11 @@ export interface IProduct {
   stock: number;
   purchasePrice: number;
   salePrice: number;
-  category: Category;
+  category: ICategory | null;
   createdAt: Date;
   updatedAt: Date;
+  company: ICompany;
+  user?: IUser;
 }
 
 export interface IProductRequest {
