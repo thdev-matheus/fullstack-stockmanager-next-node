@@ -22,7 +22,7 @@ export const createUserSchema: yup.SchemaOf<IUserRequest> = yup.object().shape({
     .required("securityAnswer: campo obrigatório")
     .max(100),
 
-  userCompanyId: yup.string().required("userCompanyId: campo obrigatório"),
+  companyId: yup.string().required("userCompanyId: campo obrigatório"),
 });
 
 export const updateUserSchema: yup.SchemaOf<IUserRequest> = yup.object().shape({
@@ -43,5 +43,5 @@ export const updateUserSchema: yup.SchemaOf<IUserRequest> = yup.object().shape({
 
   securityAnswer: yup.string().optional().max(100),
 
-  userCompanyId: yup.string().optional(),
+  companyId: yup.string().optional(),
 });

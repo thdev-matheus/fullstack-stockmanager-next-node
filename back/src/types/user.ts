@@ -17,7 +17,7 @@ export interface IUserRequest {
   isAdm?: boolean;
   securityAsk?: string;
   securityAnswer?: string;
-  userCompanyId?: string;
+  companyId?: string;
 }
 
 export interface IUserLogin {
