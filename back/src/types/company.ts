@@ -19,3 +19,8 @@ export interface ICompanyRequest {
   name: string;
   image?: string;
 }
+
+export interface ICompanyUpdateRequest {
+  name?: string;
+  image?: string;
+}
