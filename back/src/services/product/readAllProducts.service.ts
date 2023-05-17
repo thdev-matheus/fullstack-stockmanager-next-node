@@ -8,6 +8,8 @@ export const readAllProductsService = async (
   userCompanyId: string,
   companyId?: string
 ) => {
+  console.log(companyId);
+
   !page && (page = 1);
   !limit && (limit = 5);
 

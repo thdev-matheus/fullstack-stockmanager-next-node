@@ -17,5 +17,5 @@ export interface ICompany {
 
 export interface ICompanyRequest {
   name: string;
-  image: string;
+  image?: string;
 }
