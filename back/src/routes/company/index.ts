@@ -5,6 +5,7 @@ import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.mid
 import { readAllCompaniesController } from "../../controllers/company/readAllCompanies.controller";
 import { isStaffOrAdmMiddleware } from "../../middlewares/isStaffOrAdm.middleware";
 import { readOneCompanyController } from "../../controllers/company/readOneCompany.controller";
+import { readCompanyCategoriesController } from "../../controllers/company/readCompanyCategories.controller";
 
 const router = Router();
 
@@ -13,7 +14,10 @@ export const companyRoutes = () => {
 
   router.post("", isStaffOrOwnerMiddleware, createCompanyController);
   router.get("", isStaffOrOwnerMiddleware, readAllCompaniesController);
-  router.get("/:companyId", isStaffOrAdmMiddleware, readOneCompanyController);
+
+  // rotas abertas de leitura de informações sobre a empresa
+  router.get("/:companyId", readOneCompanyController);
+  router.get("/:companyId/categories", readCompanyCategoriesController);
 
   return router;
 };
