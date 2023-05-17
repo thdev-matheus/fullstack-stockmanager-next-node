@@ -1,5 +1,5 @@
+import { Company } from "../entities/company";
 import { User } from "../entities/user";
-import { ICompany } from "./company";
 
 export interface ISale {
   id: string;
@@ -8,7 +8,7 @@ export interface ISale {
   description: string;
   user: User;
   products: ISaleProduct[];
-  company: ICompany;
+  company: Company;
 }
 
 export interface ISaleRequest {

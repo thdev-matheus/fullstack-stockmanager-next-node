@@ -1,4 +1,4 @@
-import { ICompany } from "./company";
+import { Company } from "../entities/company";
 
 export interface IUser {
   id: string;
@@ -11,7 +11,7 @@ export interface IUser {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-  company: ICompany;
+  company: Company;
 }
 
 export interface IUserRequest {

@@ -1,7 +1,7 @@
-import { ICategory } from "./category";
-import { IProduct } from "./product";
-import { ISale } from "./sale";
-import { IUser } from "./user";
+import { Category } from "../entities/category";
+import { Product } from "../entities/product";
+import { Sale } from "../entities/sale";
+import { User } from "../entities/user";
 
 export interface ICompany {
   id: string;
@@ -9,10 +9,10 @@ export interface ICompany {
   image: string;
   createdAt: Date;
   updatedAt: Date;
-  users?: IUser[];
-  products?: IProduct[];
-  sales?: ISale[];
-  categories?: ICategory[];
+  users?: User[];
+  products?: Product[];
+  sales?: Sale[];
+  categories?: Category[];
 }
 
 export interface ICompanyRequest {

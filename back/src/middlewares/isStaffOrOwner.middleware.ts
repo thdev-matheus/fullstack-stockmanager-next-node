@@ -9,9 +9,6 @@ export const isStaffOrOwnerMiddleware = (
   const { userIsStaff, userId } = req;
   const { userId: id } = req.params;
 
-  console.log(userId);
-  console.log(id);
-
   if (userIsStaff || userId === id) {
     next();
   } else {
