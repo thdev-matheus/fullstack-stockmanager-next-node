@@ -39,6 +39,7 @@ export const isAuthenticatedMiddleware = (
     req.userName = decoded.userName;
     req.userIsAdm = decoded.userIsAdm;
     req.userIsStaff = decoded.userIsStaff;
+    req.userCompanyId = decoded.userCompanyId;
 
     next();
   });

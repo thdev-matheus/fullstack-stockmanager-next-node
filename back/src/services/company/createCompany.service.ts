@@ -11,6 +11,8 @@ export const createCompanyservice = async ({
     throw new AppError(400, "name: campo obrigatório");
   }
 
+  name = name.toLowerCase();
+
   const companyRepo = AppDataSource.getRepository(Company);
 
   const companyAlreadyExists = await companyRepo.findOneBy({ name });
