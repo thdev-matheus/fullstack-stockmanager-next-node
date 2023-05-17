@@ -11,6 +11,8 @@ export const updateCompanyService = async (
     throw new AppError(400, "nada para alterar");
   }
 
+  name && (name = name.toLowerCase());
+
   const companyRepo = AppDataSource.getRepository(Company);
   const company = await companyRepo.findOneBy({ id: companyId });
 
