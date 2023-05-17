@@ -19,5 +19,5 @@ export const createSaleSchema: yup.SchemaOf<ISaleRequest> = yup.object().shape({
     .of(productSchema)
     .required("products: campo obrigatório"),
 
-  companyId: yup.string().optional(),
+  companyId: yup.string().required("companyId: campo obrigatório"),
 });

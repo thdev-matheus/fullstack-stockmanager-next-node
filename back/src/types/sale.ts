@@ -14,7 +14,7 @@ export interface ISale {
 export interface ISaleRequest {
   description: string;
   products: ISaleProduct[];
-  companyId?: string;
+  companyId: string;
 }
 
 export interface ISaleProduct {

@@ -19,7 +19,7 @@ export class Product {
   @PrimaryColumn("uuid")
   readonly id: string;
 
-  @Column({ type: "varchar", length: 250, nullable: false, unique: true })
+  @Column({ type: "varchar", length: 250, nullable: false })
   name!: string;
 
   @Column({ type: "int", nullable: false, default: 0 })

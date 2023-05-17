@@ -9,8 +9,7 @@ import { Company } from "../../entities/company";
 
 export const createSaleService = async (
   { description, products, companyId }: ISaleRequest,
-  userId: string,
-  userCompanyId: string
+  userId: string
 ) => {
   const userRepo = AppDataSource.getRepository(User);
   const saleRepo = AppDataSource.getRepository(Sale);
@@ -25,7 +24,7 @@ export const createSaleService = async (
   }
 
   const company = await companyRepo.findOneBy({
-    id: companyId ? companyId : userCompanyId,
+    id: companyId,
   });
 
   if (!company) {

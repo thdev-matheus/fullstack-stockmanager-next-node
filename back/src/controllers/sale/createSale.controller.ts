@@ -5,9 +5,9 @@ import { ISaleRequest } from "../../types/sale";
 
 export const createSaleController = async (req: Request, res: Response) => {
   const data: ISaleRequest = req.body;
-  const { userId, userCompanyId } = req;
+  const { userId } = req;
 
-  const sale = await createSaleService(data, userId!, userCompanyId!);
+  const sale = await createSaleService(data, userId!);
 
   return res.status(200).json(instanceToPlain(sale));
 };

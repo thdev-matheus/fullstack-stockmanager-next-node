@@ -8,6 +8,8 @@ import { readCompanyCategoriesController } from "../../controllers/category/read
 import { readCompanyUsersController } from "../../controllers/user/readCompanyUsers.controller";
 import { readCompanyProductsController } from "../../controllers/product/readCompanyProducts.controller";
 import { filterCompanyProductsController } from "../../controllers/product/filterCompanyProducts.controller";
+import { isStaffOrAdmMiddleware } from "../../middlewares/isStaffOrAdm.middleware";
+import { readCompanySalesController } from "../../controllers/sale/readCompanySales.controller";
 
 const router = Router();
 
@@ -21,7 +23,9 @@ export const companyRoutes = () => {
   router.post("/:companyId/products/filter", filterCompanyProductsController);
 
   // rotas de administrador
-  //todas as vendas da empresa
+  router.use(isStaffOrAdmMiddleware);
+
+  router.get("/:companyId/sales", readCompanySalesController);
 
   // rotas de staff
   router.use(isStaffOrOwnerMiddleware);
