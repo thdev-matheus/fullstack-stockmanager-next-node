@@ -11,6 +11,7 @@ import { filterCompanyProductsController } from "../../controllers/product/filte
 import { isStaffOrAdmMiddleware } from "../../middlewares/isStaffOrAdm.middleware";
 import { readCompanySalesController } from "../../controllers/sale/readCompanySales.controller";
 import { updateCompanyController } from "../../controllers/company/updateCompany.controller";
+import { deleteCompanyController } from "../../controllers/company/deleteCompany.controller";
 
 const router = Router();
 
@@ -34,6 +35,7 @@ export const companyRoutes = () => {
 
   router.post("", createCompanyController);
   router.get("", readAllCompaniesController);
+  router.delete("/:companyId", deleteCompanyController);
   router.get("/:companyId/users", readCompanyUsersController);
 
   return router;
