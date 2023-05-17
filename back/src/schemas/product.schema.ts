@@ -17,7 +17,7 @@ export const createProductSchema: yup.SchemaOf<IProductRequest> = yup
 
     stock: yup.number().required("stock: campo obrigatório").min(0),
 
-    companyId: yup.string().optional(),
+    companyId: yup.string().required("companyId: campo obrigatório"),
   });
 
 export const updateProductSchema: yup.SchemaOf<IProductRequest> = yup

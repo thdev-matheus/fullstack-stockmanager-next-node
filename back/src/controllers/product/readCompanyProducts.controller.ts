@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
-import { readCompanyProductsService } from "../../services/company/readCompanyProducts.service";
+import { instanceToPlain } from "class-transformer";
+import { readCompanyProductsService } from "../../services/product/readCompanyProducts.service";
 
 export const readCompanyProductsController = async (
   req: Request,
   res: Response
 ) => {
-  const { companyId } = req.body;
+  const { companyId } = req.params;
   const { page, limit } = req.query;
 
   const products = await readCompanyProductsService(
@@ -15,5 +16,5 @@ export const readCompanyProductsController = async (
     companyId
   );
 
-  return res.status(200).json(products);
+  return res.status(200).json(instanceToPlain(products));
 };

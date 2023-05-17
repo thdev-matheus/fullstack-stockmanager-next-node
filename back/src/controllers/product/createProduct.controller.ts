@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createProductService } from "../../services/product/createProduct.service";
 import { IProductRequest } from "../../types/product";
+import { instanceToPlain } from "class-transformer";
 
 export const createProductController = async (req: Request, res: Response) => {
   const {
@@ -11,19 +12,15 @@ export const createProductController = async (req: Request, res: Response) => {
     stock,
     companyId,
   }: IProductRequest = req.body;
-  const { userCompanyId } = req;
 
-  const product = await createProductService(
-    {
-      categoryName,
-      name,
-      purchasePrice,
-      salePrice,
-      stock,
-      companyId,
-    },
-    userCompanyId!
-  );
+  const product = await createProductService({
+    categoryName,
+    name,
+    purchasePrice,
+    salePrice,
+    stock,
+    companyId,
+  });
 
-  return res.status(201).json(product);
+  return res.status(201).json(instanceToPlain(product));
 };

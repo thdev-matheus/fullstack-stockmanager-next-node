@@ -4,9 +4,10 @@ import { createCompanyController } from "../../controllers/company/createCompany
 import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.middleware";
 import { readAllCompaniesController } from "../../controllers/company/readAllCompanies.controller";
 import { readOneCompanyController } from "../../controllers/company/readOneCompany.controller";
-import { readCompanyCategoriesController } from "../../controllers/company/readCompanyCategories.controller";
-import { readCompanyUsersController } from "../../controllers/company/readCompanyUsers.controller";
-import { readCompanyProductsController } from "../../controllers/company/readCompanyProducts.controller";
+import { readCompanyCategoriesController } from "../../controllers/category/readCompanyCategories.controller";
+import { readCompanyUsersController } from "../../controllers/user/readCompanyUsers.controller";
+import { readCompanyProductsController } from "../../controllers/product/readCompanyProducts.controller";
+import { filterCompanyProductsController } from "../../controllers/product/filterCompanyProducts.controller";
 
 const router = Router();
 
@@ -17,6 +18,7 @@ export const companyRoutes = () => {
   router.get("/:companyId", readOneCompanyController);
   router.get("/:companyId/categories", readCompanyCategoriesController);
   router.get("/:companyId/products", readCompanyProductsController);
+  router.post("/:companyId/products/filter", filterCompanyProductsController);
 
   // rotas de staff
   router.use(isStaffOrOwnerMiddleware);

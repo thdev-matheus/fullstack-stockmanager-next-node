@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { instanceToPlain } from "class-transformer";
-import { readCompanyCategoriesService } from "../../services/company/readCompanyCategories.service";
+import { readCompanyCategoriesService } from "../../services/category/readCompanyCategories.service";
 
 export const readCompanyCategoriesController = async (
   req: Request,

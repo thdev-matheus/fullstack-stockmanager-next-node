@@ -6,12 +6,12 @@ import { IFilterProduct } from "../../types/product";
 import { Between, LessThanOrEqual, Like, MoreThanOrEqual } from "typeorm";
 import { Company } from "../../entities/company";
 
-export const filterProductsService = async (
-  { categoryName, name, stockLess, stockMore, companyId }: IFilterProduct,
+export const filterCompanyProductsService = async (
+  { categoryName, name, stockLess, stockMore }: IFilterProduct,
   currentURL: string,
   page: number,
   limit: number,
-  userCompanyId: string
+  companyId: string
 ) => {
   if (!categoryName && !name && !stockLess && !stockMore) {
     throw new AppError(400, "Nenhum dado para filtrar");
@@ -30,7 +30,7 @@ export const filterProductsService = async (
   const companyRepo = AppDataSource.getRepository(Company);
 
   const company = await companyRepo.findOneBy({
-    id: companyId ? companyId : userCompanyId,
+    id: companyId,
   });
 
   if (!company) {

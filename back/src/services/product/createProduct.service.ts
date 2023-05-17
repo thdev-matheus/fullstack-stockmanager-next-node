@@ -5,23 +5,20 @@ import { Product } from "../../entities/product";
 import { IProductRequest } from "../../types/product";
 import { Company } from "../../entities/company";
 
-export const createProductService = async (
-  {
-    categoryName,
-    name,
-    purchasePrice,
-    salePrice,
-    stock,
-    companyId,
-  }: IProductRequest,
-  userCompanyId: string
-) => {
+export const createProductService = async ({
+  categoryName,
+  name,
+  purchasePrice,
+  salePrice,
+  stock,
+  companyId,
+}: IProductRequest) => {
   const categoryRepo = AppDataSource.getRepository(Category);
   const productRepo = AppDataSource.getRepository(Product);
   const companyRepo = AppDataSource.getRepository(Company);
 
   const company = await companyRepo.findOneBy({
-    id: companyId ? companyId : userCompanyId,
+    id: companyId,
   });
 
   if (!company) {
