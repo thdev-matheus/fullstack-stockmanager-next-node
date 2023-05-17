@@ -20,6 +20,9 @@ export const companyRoutes = () => {
   router.get("/:companyId/products", readCompanyProductsController);
   router.post("/:companyId/products/filter", filterCompanyProductsController);
 
+  // rotas de administrador
+  //todas as vendas da empresa
+
   // rotas de staff
   router.use(isStaffOrOwnerMiddleware);
 

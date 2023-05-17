@@ -4,7 +4,6 @@ import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.mid
 import { isStaffOrAdmMiddleware } from "../../middlewares/isStaffOrAdm.middleware";
 import { createSaleValidationFieldsMiddleware } from "../../middlewares/createSaleValidatorFields.middleware";
 import { createSaleSchema } from "../../schemas/sale.schema";
-import { readAllSalesController } from "../../controllers/sale/readAllSales.controller";
 import { deleteSaleController } from "../../controllers/sale/deleteSale.controller";
 import { retrieveSaleController } from "../../controllers/sale/retrieveSale.controller";
 
@@ -20,8 +19,6 @@ export const saleRoutes = () => {
   );
 
   router.use(isStaffOrAdmMiddleware);
-
-  router.get("", readAllSalesController);
 
   router.get("/:saleId", retrieveSaleController);
 

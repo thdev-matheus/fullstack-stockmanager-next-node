@@ -16,17 +16,7 @@ import { deleteProductController } from "../../controllers/product/deleteProduct
 const router = Router();
 
 export const productRoutes = () => {
-  router.use(isAuthenticatedMiddleware);
-
-  // rotas de leitura de produtos
-
-  // router.get("", readAllProductsController);
-
-  // router.get("/filter", filterProductsController);
-
-  // rotas de criação e edição de produto precisa ser adm ou staff
-
-  router.use(isStaffOrAdmMiddleware);
+  router.use(isAuthenticatedMiddleware, isStaffOrAdmMiddleware);
 
   router.post(
     "",

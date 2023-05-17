@@ -3,7 +3,6 @@ import { isAuthenticatedMiddleware } from "../../middlewares/isAuthenticated.mid
 import { isStaffOrAdmMiddleware } from "../../middlewares/isStaffOrAdm.middleware";
 
 import { createCategoryController } from "../../controllers/category/createCategory.controller";
-import { readAllCategoriesController } from "../../controllers/category/readAllCategories.controller";
 import { retrieveCategoryController } from "../../controllers/category/retrieveCategory.controller";
 import { updateCategoryController } from "../../controllers/category/updateCategory.controller";
 import { deleteCategoryController } from "../../controllers/category/deleteCategory.controller";
@@ -13,7 +12,6 @@ const router = Router();
 export const categoryRoutes = () => {
   router.use(isAuthenticatedMiddleware);
 
-  router.get("", readAllCategoriesController);
   router.get("/:categoryId", retrieveCategoryController);
 
   router.use(isStaffOrAdmMiddleware);
