@@ -10,6 +10,7 @@ import { readCompanyProductsController } from "../../controllers/product/readCom
 import { filterCompanyProductsController } from "../../controllers/product/filterCompanyProducts.controller";
 import { isStaffOrAdmMiddleware } from "../../middlewares/isStaffOrAdm.middleware";
 import { readCompanySalesController } from "../../controllers/sale/readCompanySales.controller";
+import { updateCompanyController } from "../../controllers/company/updateCompany.controller";
 
 const router = Router();
 
@@ -25,6 +26,7 @@ export const companyRoutes = () => {
   // rotas de administrador
   router.use(isStaffOrAdmMiddleware);
 
+  router.patch("/:companyId", updateCompanyController);
   router.get("/:companyId/sales", readCompanySalesController);
 
   // rotas de staff
