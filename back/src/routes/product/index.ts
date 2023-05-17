@@ -7,11 +7,11 @@ import {
   createProductSchema,
   updateProductSchema,
 } from "../../schemas/product.schema";
-import { readAllProductsController } from "../../controllers/product/readAllProducts.controller";
+// import { readAllProductsController } from "../../controllers/product/readAllProducts.controller";
 import { updateProductValidationFieldsMiddleware } from "../../middlewares/updateProductValidationFields.middleware";
 import { updateProductController } from "../../controllers/product/updateProduct.controller";
 import { deleteProductController } from "../../controllers/product/deleteProduct.controller";
-import { filterProductsController } from "../../controllers/product/filterProducts.controller";
+// import { filterProductsController } from "../../controllers/product/filterProducts.controller";
 
 const router = Router();
 
@@ -20,9 +20,9 @@ export const productRoutes = () => {
 
   // rotas de leitura de produtos
 
-  router.get("", readAllProductsController);
+  // router.get("", readAllProductsController);
 
-  router.get("/filter", filterProductsController);
+  // router.get("/filter", filterProductsController);
 
   // rotas de criação e edição de produto precisa ser adm ou staff
 

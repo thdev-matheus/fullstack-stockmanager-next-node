@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { filterProductsService } from "../../services/product/filterProducts.service";
+import { filterProductsService } from "../../services/company/filterProducts.service";
 import { IFilterProduct } from "../../types/product";
 
 export const filterProductsController = async (req: Request, res: Response) => {

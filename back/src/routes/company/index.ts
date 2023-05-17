@@ -6,6 +6,7 @@ import { readAllCompaniesController } from "../../controllers/company/readAllCom
 import { readOneCompanyController } from "../../controllers/company/readOneCompany.controller";
 import { readCompanyCategoriesController } from "../../controllers/company/readCompanyCategories.controller";
 import { readCompanyUsersController } from "../../controllers/company/readCompanyUsers.controller";
+import { readCompanyProductsController } from "../../controllers/company/readCompanyProducts.controller";
 
 const router = Router();
 
@@ -15,6 +16,7 @@ export const companyRoutes = () => {
   // rotas abertas de leitura de informações sobre a empresa
   router.get("/:companyId", readOneCompanyController);
   router.get("/:companyId/categories", readCompanyCategoriesController);
+  router.get("/:companyId/products", readCompanyProductsController);
 
   // rotas de staff
   router.use(isStaffOrOwnerMiddleware);

@@ -1,19 +1,17 @@
 import { Request, Response } from "express";
-import { readAllProductsService } from "../../services/product/readAllProducts.service";
+import { readCompanyProductsService } from "../../services/company/readCompanyProducts.service";
 
-export const readAllProductsController = async (
+export const readCompanyProductsController = async (
   req: Request,
   res: Response
 ) => {
   const { companyId } = req.body;
   const { page, limit } = req.query;
-  const { userCompanyId } = req;
 
-  const products = await readAllProductsService(
+  const products = await readCompanyProductsService(
     req.baseUrl,
     Number(page),
     Number(limit),
-    userCompanyId!,
     companyId
   );
 

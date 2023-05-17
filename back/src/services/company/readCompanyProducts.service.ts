@@ -1,15 +1,12 @@
 import { AppDataSource } from "../../data-source";
 import { Product } from "../../entities/product";
 
-export const readAllProductsService = async (
+export const readCompanyProductsService = async (
   currentURL: string,
   page: number,
   limit: number,
-  userCompanyId: string,
-  companyId?: string
+  companyId: string
 ) => {
-  console.log(companyId);
-
   !page && (page = 1);
   !limit && (limit = 5);
 
@@ -18,7 +15,7 @@ export const readAllProductsService = async (
 
   const productRepo = AppDataSource.getRepository(Product);
   const count = await productRepo.count({
-    where: { company: { id: companyId ? companyId : userCompanyId } },
+    where: { company: { id: companyId } },
   });
 
   page < 1 || (page * limit > count && (page = 1));
@@ -31,16 +28,18 @@ export const readAllProductsService = async (
     take: limit,
     order: { createdAt: "desc" },
     relations: { category: true },
-    where: { company: { id: companyId ? companyId : userCompanyId } },
+    where: { company: { id: companyId } },
   });
 
   const next =
     page * limit <= count
-      ? `${currentURL}?pages=${page + 1}&limit=${limit}`
+      ? `${currentURL}/${companyId}/products?pages=${page + 1}&limit=${limit}`
       : null;
 
   const previous =
-    page <= 1 ? null : `${currentURL}?page=${page - 1}&limit=${limit}`;
+    page <= 1
+      ? null
+      : `${currentURL}/${companyId}/products?page=${page - 1}&limit=${limit}`;
 
   const response = {
     page,
