@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { filterCompanyProductsService } from "../../services/product/filterCompanyProducts.service";
 import { IFilterProduct } from "../../types/product";
+import { instanceToPlain } from "class-transformer";
 
 export const filterCompanyProductsController = async (
   req: Request,
@@ -18,5 +19,5 @@ export const filterCompanyProductsController = async (
     companyId
   );
 
-  return res.status(200).json(filteredProducts);
+  return res.status(200).json(instanceToPlain(filteredProducts));
 };
