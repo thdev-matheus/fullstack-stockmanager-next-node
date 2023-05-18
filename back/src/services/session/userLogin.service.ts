@@ -20,15 +20,15 @@ export const userLoginService = async ({ name, password }: IUserLogin) => {
     throw new AppError(401, "nome ou senha inválidos");
   }
 
-  if (!user.isActive) {
-    user.isActive = true;
-    await userRepo.save(user);
-  }
-
   const passwordMatch = compareSync(password, user.password);
 
   if (!passwordMatch) {
     throw new AppError(401, "nome ou senha inválidos");
+  }
+
+  if (!user.isActive) {
+    user.isActive = true;
+    await userRepo.save(user);
   }
 
   const token = jwt.sign(

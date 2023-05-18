@@ -27,3 +27,8 @@ export interface IUserLogin {
   name: string;
   password: string;
 }
+
+export interface IRecoverPasswordRequest {
+  securityAnswer: string;
+  newPassword: string;
+}

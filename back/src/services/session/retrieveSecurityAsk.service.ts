@@ -10,8 +10,11 @@ export const retrieveSecurityAskService = async (name: string) => {
   const userRepo = AppDataSource.getRepository(User);
   const user = await userRepo.findOneBy({ name });
 
-  if (!user) {
-    throw new AppError(404, "usuário não encontrado");
+  if (!user || !user.isActive) {
+    throw new AppError(
+      404,
+      "usuário não encontrado ou inativo. Favor entrar em contato com a manutenção."
+    );
   }
 
   return { securityAsk: user.securityAsk.toLowerCase() };
