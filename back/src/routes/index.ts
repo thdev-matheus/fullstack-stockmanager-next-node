@@ -8,7 +8,7 @@ import { companyRoutes } from "./company";
 
 export const appRoutes = (app: Express): void => {
   app.use("/users", userRoutes());
-  app.use("/login", sessionRoutes());
+  app.use("/session", sessionRoutes());
   app.use("/categories", categoryRoutes());
   app.use("/products", productRoutes());
   app.use("/sales", saleRoutes());

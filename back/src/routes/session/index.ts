@@ -5,7 +5,7 @@ import { retrieveSecurityAskController } from "../../controllers/session/retriev
 const router = Router();
 
 export const sessionRoutes = (): Router => {
-  router.post("", userLoginController);
+  router.post("/login", userLoginController);
   router.get("/security-ask/:userName", retrieveSecurityAskController);
 
   return router;
