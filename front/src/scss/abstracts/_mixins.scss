@@ -1,0 +1,33 @@
+@mixin title-small {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+@mixin title-medium {
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+@mixin title-large {
+  font-size: 24pt;
+  font-weight: bold;
+}
+
+@mixin text-small {
+  font-size: 10pt;
+  font-weight: 400;
+}
+
+@mixin text-medium {
+  font-size: 12pt;
+  font-weight: 400;
+}
+
+@mixin text-large {
+  font-size: 14pt;
+  font-weight: 400;
+}
+
+@mixin effect-style-shadow-1 {
+  box-shadow: 0px 4px 4px rgba($color: #000, $alpha: 0.25);
+}
