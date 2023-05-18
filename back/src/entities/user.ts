@@ -30,9 +30,11 @@ export class User {
   @Column({ type: "boolean", nullable: false, default: false })
   isStaff!: boolean;
 
+  @Exclude()
   @Column({ type: "varchar", length: 150, nullable: false })
   securityAsk!: string;
 
+  @Exclude()
   @Column({ type: "varchar", length: 150, nullable: false })
   securityAnswer!: string;
 

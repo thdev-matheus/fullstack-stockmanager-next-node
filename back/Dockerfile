@@ -16,4 +16,4 @@ RUN npm i
 
 COPY . .
 
-CMD [ "npm", "run", "dockerdev" ]
+CMD [ "npm", "run", "dev" ]
