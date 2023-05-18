@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { SchemaOf } from "yup";
 import { IRecoverPasswordRequest } from "../types/user";
 
-export const recoverPasswordValidationFieldsmiddleware =
+export const recoverPasswordValidationFieldsMiddleware =
   (schema: SchemaOf<IRecoverPasswordRequest>) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
