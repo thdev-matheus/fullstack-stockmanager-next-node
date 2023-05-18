@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import { SchemaOf } from "yup";
-import { IUserRequest } from "../types/user";
+import { IRecoverPasswordRequest } from "../types/user";
 
-export const createUserValidationFieldsMiddleware =
-  (schema: SchemaOf<IUserRequest>) =>
+export const recoverPasswordValidationFieldsmiddleware =
+  (schema: SchemaOf<IRecoverPasswordRequest>) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const data: IUserRequest = req.body;
+      const data: IRecoverPasswordRequest = req.body;
 
       await schema.validate(data, {
         abortEarly: false,
