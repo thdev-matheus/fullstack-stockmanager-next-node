@@ -37,7 +37,7 @@ export const recoverPasswordService = async (
     password: hashedPassword,
   });
 
-  const updatedUser = userRepo.findOneBy({ id: user.id });
+  const updatedUser = await userRepo.findOneBy({ id: user.id });
 
-  return updatedUser;
+  return updatedUser!;
 };
