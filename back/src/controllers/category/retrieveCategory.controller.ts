@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { retrieveCategoryService } from "../../services/category/retrieveCategory.service";
+import { instanceToPlain } from "class-transformer";
 
 export const retrieveCategoryController = async (
   req: Request,
@@ -9,5 +10,5 @@ export const retrieveCategoryController = async (
 
   const category = await retrieveCategoryService(categoryId);
 
-  return res.status(200).json(category);
+  return res.status(200).json(instanceToPlain(category));
 };

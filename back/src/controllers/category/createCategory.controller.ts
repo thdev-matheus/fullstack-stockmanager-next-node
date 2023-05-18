@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { createCategoryService } from "../../services/category/createCategory.service";
+import { instanceToPlain } from "class-transformer";
 
 export const createCategoryController = async (req: Request, res: Response) => {
   const { name, companyId } = req.body;
@@ -13,5 +14,5 @@ export const createCategoryController = async (req: Request, res: Response) => {
     userCompanyId!
   );
 
-  return res.status(201).json(createdCategory);
+  return res.status(201).json(instanceToPlain(createdCategory));
 };
