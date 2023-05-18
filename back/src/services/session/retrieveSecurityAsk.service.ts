@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source";
 import { AppError } from "../../errors";
 import { User } from "../../entities/user";
 
-export const retrieveSecureAsk = async (name: string) => {
+export const retrieveSecurityAskService = async (name: string) => {
   if (!name) {
     throw new AppError(400, "name: campo obrigatório");
   }
@@ -14,5 +14,5 @@ export const retrieveSecureAsk = async (name: string) => {
     throw new AppError(404, "usuário não encontrado");
   }
 
-  return user.securityAsk.toLowerCase();
+  return { securityAsk: user.securityAsk.toLowerCase() };
 };
