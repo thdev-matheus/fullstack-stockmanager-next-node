@@ -22,7 +22,7 @@ export const companyRoutes = () => {
   router.get("/:companyId", readOneCompanyController);
   router.get("/:companyId/categories", readCompanyCategoriesController);
   router.get("/:companyId/products", readCompanyProductsController);
-  router.post("/:companyId/products/filter", filterCompanyProductsController);
+  router.get("/:companyId/products/filter", filterCompanyProductsController);
 
   // rotas de administrador
   router.use(isStaffOrAdmMiddleware);
