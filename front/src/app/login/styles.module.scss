@@ -1,0 +1,59 @@
+@use "../../scss/abstracts/" as *;
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  border-radius: .5rem;
+
+  background-color: $color-dark-gray;
+
+  @include effect-style-shadow-1;
+
+
+  & > h1 {
+    @include title-small;
+  }
+
+  & > p {
+    @include text-small;
+  }
+
+  & > form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.link {
+  @include text-medium;
+  
+  font-weight: bold;
+
+  color: $color-light-gray;
+
+  transition: .8s;
+
+  &:hover {
+    display: inline-block;
+    transform: translateY(-0.1rem);
+
+    color: $color-light-blue;
+
+    transition: .8s;
+  }
+}
