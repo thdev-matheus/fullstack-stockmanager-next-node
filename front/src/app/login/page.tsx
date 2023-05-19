@@ -24,7 +24,7 @@ export default function LoginPage() {
             type="password"
           />
 
-          <button type="submit">Entrar</button>
+          <C.Button type="submit">Entrar</C.Button>
         </form>
         <p>
           Não tem login?{" "}

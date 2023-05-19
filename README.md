@@ -2,7 +2,7 @@
 
 ## documentação da API
 
-| https://thdev-matheus.github.io/fullstack-stockmanager-react-node/
+| https://thdev-matheus.github.io/fullstack-stockmanager-next-node/
 
 <br/>
 <br/>

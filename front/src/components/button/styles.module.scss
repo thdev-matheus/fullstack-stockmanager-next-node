@@ -1,0 +1,70 @@
+@use "../../scss/abstracts/" as *;
+
+.container {
+  width: 100%;
+  
+  &[data-size="small"] {
+  height: 2.5rem;
+
+  font-size: 12pt;
+  font-weight: bold;
+  }
+
+  &[data-size="medium"] {
+  height: 3rem;
+
+  font-size: 14pt;
+  font-weight: bold;
+  }
+
+  &[data-size="large"] {
+  height: 3.5rem;
+
+  font-size: 14pt;
+  font-weight: bold;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+
+  border-radius: 0.5rem;
+
+  @include effect-style-shadow-1;
+
+  cursor: pointer;
+  transition: .5s;
+
+  &[data-type="primary"] {
+    background-color: $color-light-blue;
+    color: $color-black;
+  }
+
+  &[data-type="secondary"] {
+    background-color: $color-light-yellow;
+    color: $color-black;
+  }
+
+
+  &:hover {
+    &[data-type="primary"] {
+      translate: 0 -0.2rem;
+      background-color: $color-blue;
+      color: $color-white;
+    }
+    
+    &[data-type="secondary"] {
+      translate: 0 -0.2rem;
+      background-color: $color-yellow;
+    }
+  }
+
+  &:active{
+    transform: scale(0.98);
+
+    box-shadow: 1.5px 1.5px 2px 0 rgba($color: #000, $alpha: 0.5);
+
+    transition: transform 0s;
+  }
+}
