@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import UserProviver from "./user";
+import CompanyProviver from "./company";
 
 interface IContextsProps {
   children: ReactNode;
@@ -8,7 +9,9 @@ interface IContextsProps {
 export default function Contexts({ children }: IContextsProps) {
   return (
     <>
-      <UserProviver>{children}</UserProviver>
+      <UserProviver>
+        <CompanyProviver>{children}</CompanyProviver>
+      </UserProviver>
     </>
   );
 }
