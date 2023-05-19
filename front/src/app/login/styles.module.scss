@@ -10,13 +10,14 @@
 }
 
 .container__box {
+  width: 17.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 
-  padding: 1rem;
+  padding: 2rem 1rem;
 
   border-radius: .5rem;
 
@@ -27,21 +28,19 @@
 
   & > h1 {
     @include title-small;
+
+    margin-bottom: .5rem
   }
 
   & > p {
-    @include text-small;
-  }
-
-  & > form {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem
+    font-size: 8pt;
+    font-weight: 400;
+    letter-spacing: .03rem;
   }
 }
 
 .link {
-  @include text-medium;
+  @include text-small;
   
   font-weight: bold;
 
