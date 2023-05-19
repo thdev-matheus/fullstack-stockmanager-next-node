@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { IUserLoginRequest } from "@/globalTypes/session";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userLoginSchema } from "@/schemas/session";
+import { useUserContext } from "@/contexts/user";
 
 export default function LoginForm() {
   const {
@@ -18,8 +19,10 @@ export default function LoginForm() {
     reValidateMode: "onSubmit",
   });
 
+  const { userLogin } = useUserContext();
+
   const loginSubmit = async (data: IUserLoginRequest) => {
-    console.log(data);
+    userLogin(data);
   };
 
   return (
