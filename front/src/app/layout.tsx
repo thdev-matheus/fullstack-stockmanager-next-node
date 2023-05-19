@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "@/scss/main.scss";
+import Contexts from "@/contexts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Contexts>{children}</Contexts>
+      </body>
     </html>
   );
 }
