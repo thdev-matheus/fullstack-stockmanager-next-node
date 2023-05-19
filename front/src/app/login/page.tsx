@@ -11,11 +11,11 @@ export default function LoginPage() {
         <B.LoginForm />
 
         <p>
-          Não tem login?{" "}
+          Esqueceu sua senha?{" "}
           <Link className={style.link} href="/request">
             Solicite
           </Link>{" "}
-          seu usuário
+          a recuperação.
         </p>
       </div>
     </section>
