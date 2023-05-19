@@ -11,11 +11,6 @@ export interface IUser {
   company: ICompany;
 }
 
-export interface IUserLoginRequest {
-  name: "string";
-  password: "string";
-}
-
 export interface IUserCreateRequest {
   name: string;
   password: string;

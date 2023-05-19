@@ -4,9 +4,9 @@ import * as C from "@/components";
 import { FiLock, FiUser } from "react-icons/fi";
 import style from "./styles.module.scss";
 import { useForm } from "react-hook-form";
-import { IUserLoginRequest } from "@/globalTypes/user";
+import { IUserLoginRequest } from "@/globalTypes/session";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userLoginSchema } from "@/schemas/user";
+import { userLoginSchema } from "@/schemas/session";
 
 export default function LoginForm() {
   const {
