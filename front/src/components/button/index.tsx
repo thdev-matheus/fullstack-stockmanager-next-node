@@ -4,7 +4,13 @@ import { forwardRef } from "react";
 
 const Button = forwardRef<HTMLButtonElement, T.IButtonProps>(
   (
-    { children, primary = true, secondary = false, size = "medium", ...rest },
+    {
+      children,
+      primary = true,
+      secondary = false,
+      buttonSize = "medium",
+      ...rest
+    },
     ref
   ) => {
     secondary ? (primary = false) : (primary = true);
@@ -15,7 +21,7 @@ const Button = forwardRef<HTMLButtonElement, T.IButtonProps>(
         ref={ref}
         className={style.container}
         data-type={type}
-        data-size={size}
+        data-size={buttonSize}
         {...rest}
       >
         {children}

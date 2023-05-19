@@ -39,7 +39,7 @@ const Input = forwardRef<HTMLInputElement, T.IInputProps>(
           {label} {!!error && <span> - {error}</span>}
         </div>
 
-        <div
+        <section
           className={style.input_container}
           data-size={inputSize}
           data-error={isErrored && "true"}
@@ -81,7 +81,7 @@ const Input = forwardRef<HTMLInputElement, T.IInputProps>(
               <Icon />
             </div>
           )}
-        </div>
+        </section>
       </div>
     );
   }

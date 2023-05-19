@@ -2,16 +2,23 @@
 
 .container {
   width: 100%;
+
   &[data-size="small"] {
-    height: 2.5rem;
+    & > div {
+      font-size: 10pt;
+    }
   }
 
   &[data-size="medium"] {
-    height: 3rem;
+    & > div {
+      font-size: 11pt;
+    }
   }
 
   &[data-size="large"] {
-    height: 3.5rem;
+    & > div {
+      font-size: 12pt;
+    }
   }
 
   text-align: left;
@@ -37,7 +44,30 @@
 
 .input_container {
   width: 100%;
-  height: 90%;
+  
+  &[data-size="small"] {
+    height: 2rem;
+
+    & > input {
+      font-size: 10pt;
+    }
+  }
+
+  &[data-size="medium"] {
+    height: 2.5rem;
+    
+    & > input {
+      font-size: 12pt;
+    }
+  }
+
+  &[data-size="large"] {
+    height: 3rem;
+    
+    & > input {
+      font-size: 16pt;
+    }
+  }
 
   display: flex;
   align-items: center;
@@ -111,15 +141,21 @@
     
   }  
 
-  & > div > svg {
-    margin-right: 0.5rem;
+  & > div {
+    display: flex;
+    align-items: center;
 
-    color: $color-white;
+    & > svg {
+      margin-right: 0.5rem;
 
-    cursor: default;
-
-    transition: .5s; 
+      color: $color-white;
+  
+      cursor: default;
+  
+      transition: .5s;
+    }
   }
+
 }
 
 .password_eye {
