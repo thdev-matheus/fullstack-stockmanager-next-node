@@ -36,7 +36,7 @@ const Input = forwardRef<HTMLInputElement, T.IInputProps>(
     return (
       <div data-size={inputSize} className={style.container}>
         <div>
-          {label} {!!error && <span> - {error}</span>}
+          {label} {!!error && <span title={error}> - {error}</span>}
         </div>
 
         <section

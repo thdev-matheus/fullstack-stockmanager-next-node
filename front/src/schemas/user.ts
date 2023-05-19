@@ -48,7 +48,7 @@ export const userCreateSchema = z
 
     confirmPassword: z.string().nonempty("campo obrigatório"),
   })
-  .refine(
-    ({ confirmPassword, password }) => password === confirmPassword,
-    "senhas não são iguais"
-  );
+  .refine(({ confirmPassword, password }) => password === confirmPassword, {
+    message: "senhas não são iguais",
+    path: ["confirmPassword"],
+  });

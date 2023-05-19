@@ -1,3 +1,16 @@
+import { ICompany } from "./company";
+
+export interface IUser {
+  id: string;
+  name: string;
+  isAdm: boolean;
+  isStaff: boolean;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  company: ICompany;
+}
+
 export interface IUserLoginRequest {
   name: "string";
   password: "string";

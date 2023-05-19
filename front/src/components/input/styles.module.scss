@@ -24,12 +24,17 @@
   text-align: left;
 
   & > div {
+    width: 100%;
     margin-bottom: 0.2rem;
     padding-left: 1rem;
 
     color: $color-white;
 
     font-weight: bold;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     & > span {
       font-size: 7pt;
