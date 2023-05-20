@@ -1,7 +1,15 @@
 "use client";
 
+import { createContext, useContext, useEffect, useState } from "react";
+import { ICompany } from "@/globalTypes/company";
+import { ICategory } from "@/globalTypes/category";
+import { IUser } from "@/globalTypes/user";
+import { ISale } from "@/globalTypes/sale";
+import { IProduct } from "@/globalTypes/product";
 import * as T from "./types";
-import { createContext, useContext } from "react";
+import { useUserContext } from "../user";
+import api from "@/services/api";
+import { toast } from "react-toast";
 
 const companyContext = createContext<T.ICompanyContext>(
   {} as T.ICompanyContext
@@ -13,8 +21,106 @@ export const useCompanyContext = () => {
   return context;
 };
 
-export default function CompanyProviver({ children }: T.ICompanyProviderProps) {
+export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
+  const [company, setCompany] = useState<ICompany>({} as ICompany);
+  const [companyCategories, setCompanyCategories] = useState<ICategory[]>([]);
+  const [companyProducts, setCompanyProducts] = useState<IProduct[]>([]);
+  const [companySales, setCompanySales] = useState<ISale[]>([]);
+  const [companyUsers, setCompanyUsers] = useState<IUser[]>([]);
+
+  const { user } = useUserContext();
+
+  const token = localStorage.getItem("@SM-TOKEN");
+
+  const getCompanyCategories = async (companyId: string) => {
+    try {
+      api
+        .get(`/companies/${companyId}/categories`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setCompanyCategories(res.data.results);
+        });
+    } catch (error) {
+      toast.error("Categorias: algo deu errado.");
+    }
+  };
+
+  const getCompanyProducts = async (companyId: string, url?: string) => {
+    try {
+      api
+        .get(url || `/companies/${companyId}/products`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setCompanyProducts(res.data.results);
+        });
+    } catch (error) {
+      toast.error("Produtos: algo deu errado.");
+    }
+  };
+
+  const getCompanySales = async (companyId: string, url?: string) => {
+    try {
+      api
+        .get(url || `/companies/${companyId}/sales`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setCompanySales(res.data.results);
+        });
+    } catch (error) {
+      toast.error("Vendas: algo deu errado.");
+    }
+  };
+
+  const getCompanyUsers = async (companyId: string) => {
+    try {
+      api
+        .get(`/companies/${companyId}/users`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setCompanyUsers(res.data.results);
+        });
+    } catch (error) {
+      toast.error("Usuários: algo deu errado.");
+    }
+  };
+
+  const getCompanyInfo = async (companyId: string) => {
+    user?.isStaff && getCompanyUsers(companyId);
+
+    user?.isAdm && getCompanySales(companyId);
+
+    getCompanyCategories(companyId);
+    getCompanyProducts(companyId);
+  };
+
+  useEffect(() => {
+    if (!!user) {
+      setCompany(user.company);
+      getCompanyInfo(user.company.id);
+    }
+  }, [user]);
+
+  console.log("Empresa => ", company);
+  console.log("Categorias => ", companyCategories);
+  console.log("Produtos => ", companyProducts);
+  console.log("Vendas => ", companySales);
+  console.log("Usuários => ", companyUsers);
+
   return (
-    <companyContext.Provider value={{}}>{children}</companyContext.Provider>
+    <companyContext.Provider value={{ company }}>
+      {children}
+    </companyContext.Provider>
   );
 }

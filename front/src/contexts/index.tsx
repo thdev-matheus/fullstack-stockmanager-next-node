@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode } from "react";
-import UserProviver from "./user";
-import CompanyProviver from "./company";
+import UserProvider from "./user";
+import CompanyProvider from "./company";
 import { ToastContainer } from "react-toast";
 interface IContextsProps {
   children: ReactNode;
@@ -10,9 +10,9 @@ interface IContextsProps {
 export default function Contexts({ children }: IContextsProps) {
   return (
     <>
-      <UserProviver>
-        <CompanyProviver>{children}</CompanyProviver>
-      </UserProviver>
+      <UserProvider>
+        <CompanyProvider>{children}</CompanyProvider>
+      </UserProvider>
       <ToastContainer delay={3000} />
     </>
   );

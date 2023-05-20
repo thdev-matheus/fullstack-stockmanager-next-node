@@ -8,7 +8,6 @@ import { IUserLoginRequest } from "@/globalTypes/session";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userLoginSchema } from "@/schemas/session";
 import { useUserContext } from "@/contexts/user";
-
 export default function LoginForm() {
   const {
     handleSubmit,
@@ -22,7 +21,7 @@ export default function LoginForm() {
   const { userLogin } = useUserContext();
 
   const loginSubmit = async (data: IUserLoginRequest) => {
-    userLogin(data);
+    await userLogin(data);
   };
 
   return (

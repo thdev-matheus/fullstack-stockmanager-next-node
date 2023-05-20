@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import style from "./styles.module.scss";
 import * as B from "@/blocks";
