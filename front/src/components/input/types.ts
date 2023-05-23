@@ -5,4 +5,7 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   icon?: IconType;
   error?: string;
+
+  primary?: boolean;
+  secondary?: boolean;
 }

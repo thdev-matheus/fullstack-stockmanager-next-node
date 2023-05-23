@@ -7,13 +7,24 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    /* extend: {
-      fontSize: {
-        big: "var(--font-big)",
+    extend: {
+      textColor: {
+        "input-color-primary": "#fff",
+        "input-color-secondary": "#fe28",
       },
-      textColor: {},
-      colors: {},
-    }, */
+      placeholderColor: {
+        "input-placeholder-color-primary": "#458",
+        "input-placeholder-color-secondary": "#00ff00",
+      },
+      borderColor: {
+        "input-border-color-primary": "#fff",
+        "input-border-color-secondary": "#fe28",
+      },
+      backgroundColor: {
+        "input-background-color-primary": "transparent",
+        "input-background-color-secondary": "#000",
+      },
+    },
   },
   plugins: [],
 };
