@@ -1,3 +1,4 @@
+import Contexts from "@/contexts";
 import "@/styles/main.css";
 import { Inter } from "next/font/google";
 
@@ -15,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={`${inter.className} bg-zinc-800`}>{children}</body>
+      <body className={`${inter.className} bg-zinc-800`}>
+        <Contexts>{children}</Contexts>
+      </body>
     </html>
   );
 }

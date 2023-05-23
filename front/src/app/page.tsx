@@ -1,5 +1,6 @@
 "use client";
 import * as C from "@/components";
+import Link from "next/link";
 import { useState } from "react";
 import { FiUser } from "react-icons/fi";
 
@@ -15,38 +16,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="w-full h-full">
-      <div className="w-[15rem]">
-        <C.Input
-          label="teste"
-          icon={FiUser}
-          placeholder="placeholder"
-          type="password"
-        />
-      </div>
-
-      <div className="w-[15rem] mt-4">
-        <C.Select
-          label="Select Primary"
-          activeOpt={activeOpt}
-          options={options}
-          setAction={setActiveOpt}
-        />
-      </div>
-
-      <div className="w-[15rem] mt-4">
-        <C.Select
-          label="Select Secondary"
-          activeOpt={activeOpt}
-          options={options}
-          setAction={setActiveOpt}
-          secondary
-        />
-      </div>
-
-      <div className="w-[15rem] mt-4">
-        <C.Button>Teste</C.Button>
-      </div>
-    </div>
+    <>
+      <h1>Home</h1>
+      <Link href="/login">Ir para Login</Link>
+    </>
   );
 }

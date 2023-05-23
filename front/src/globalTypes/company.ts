@@ -12,6 +12,6 @@ export interface ICompanyCreateRequest {
 }
 
 export interface ICompanyUpdateRequest {
-  name?: string;
+  name: string;
   image?: string;
 }
