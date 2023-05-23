@@ -1,7 +1,19 @@
 @tailwind utilities;
 
 @layer utilities {
-  .big-text {
-    font-size: var(--font-big);
+  .no-spin::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  .custom-shadow {
+    box-shadow: 0 0 1px 1px #FFCC70, 0 0 2px 2px #C850C0, 0 0 5px 5px #798ced5a;
+
+    transition-duration: 600ms;
+  }
+
+  .btn-animation {
+    translate: 0 -0.3rem;
+
+    transition: .8s;
   }
 }

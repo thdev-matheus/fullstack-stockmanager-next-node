@@ -1,7 +1,11 @@
+import * as C from "@/components";
+
 export default function Home() {
   return (
-    <>
-      <h1 className="text-big">Home</h1>
-    </>
+    <div className="w-full h-full bg-zinc-800">
+      <div className="w-[15rem]">
+        <C.Input label="teste" />
+      </div>
+    </div>
   );
 }
