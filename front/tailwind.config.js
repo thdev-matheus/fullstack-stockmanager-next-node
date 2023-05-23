@@ -10,19 +10,19 @@ module.exports = {
     extend: {
       textColor: {
         "input-color-primary": "#fff",
-        "input-color-secondary": "#fe28",
+        "input-color-secondary": "#fff",
       },
       placeholderColor: {
-        "input-placeholder-color-primary": "#458",
-        "input-placeholder-color-secondary": "#00ff00",
+        "input-placeholder-color-primary": "#505050",
+        "input-placeholder-color-secondary": "#505050",
       },
       borderColor: {
         "input-border-color-primary": "#fff",
-        "input-border-color-secondary": "#fe28",
+        "input-border-color-secondary": "#fff",
       },
       backgroundColor: {
         "input-background-color-primary": "transparent",
-        "input-background-color-secondary": "#000",
+        "input-background-color-secondary": "transparent",
       },
     },
   },

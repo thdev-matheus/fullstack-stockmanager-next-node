@@ -102,7 +102,9 @@ const Input = forwardRef<HTMLInputElement, T.IInputProps>(
                 : "bg-input-background-color-secondary"
             }
           border-[1px] ${
-            primary
+            error
+              ? "border-red-600"
+              : primary
               ? "border-color-input-border-color-primary"
               : "border-color-input-border-color-secondary"
           } rounded-[.5rem] px-3 ${isFocus && "custom-shadow"}`}
