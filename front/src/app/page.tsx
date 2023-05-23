@@ -13,6 +13,9 @@ export default function Home() {
           type="password"
         />
       </div>
+      <div className="w-[15rem] mt-4">
+        <C.Button>Teste</C.Button>
+      </div>
     </div>
   );
 }
