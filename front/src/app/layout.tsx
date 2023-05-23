@@ -1,12 +1,11 @@
+import "@/styles/main.css";
 import { Inter } from "next/font/google";
-import "@/scss/main.scss";
-import Contexts from "@/contexts";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Stock Manager",
-  description: "Um gerenciador de estoque simples e descomplicado",
+  description: "Um gerenciador de estoque simples para pessoas simples",
 };
 
 export default function RootLayout({
@@ -16,9 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
-        <Contexts>{children}</Contexts>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

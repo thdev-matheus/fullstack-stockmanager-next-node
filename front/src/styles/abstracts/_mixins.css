@@ -1,0 +1,7 @@
+@tailwind utilities;
+
+@layer utilities {
+  .big-text {
+    font-size: var(--font-big);
+  }
+}
