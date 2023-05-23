@@ -11,7 +11,6 @@ export default function Home() {
           icon={FiUser}
           placeholder="placeholder"
           type="password"
-          secondary
         />
       </div>
     </div>
