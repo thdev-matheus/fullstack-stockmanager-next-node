@@ -30,6 +30,7 @@ export default function UserProvider({ children }: T.IUserProviderProps) {
 
       setUser(response.data.user);
       toast.success("Sucesso!");
+      router.push("/staff-panel");
     } catch (error) {
       toast.error("Algo deu errado");
       router.push("/erro");
