@@ -1,13 +1,16 @@
 "use client";
 
 import { useCompanyContext } from "@/contexts/company";
+import { useUserContext } from "@/contexts/user";
 
 export default function StaffCompaniesPage() {
-  const {} = useCompanyContext();
+  const { companies } = useUserContext();
 
   return (
     <>
-      <h1>StaffCompaniesPage</h1>
+      {companies?.map((company) => (
+        <p key={company.id}>{company.name}</p>
+      ))}
     </>
   );
 }
