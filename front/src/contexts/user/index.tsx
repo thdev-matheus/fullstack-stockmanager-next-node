@@ -27,7 +27,7 @@ export default function UserProvider({ children }: T.IUserProviderProps) {
   const router = useRouter();
 
   const getAllCompanies = async () => {
-    const token = localStorage.getItem("SM-TOKEN");
+    const token = localStorage.getItem("@SM-TOKEN");
 
     try {
       const response = await api.get("/companies", {

@@ -112,11 +112,11 @@ export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
     }
   }, [user]);
 
-  console.log("Empresa => ", company);
-  console.log("Categorias => ", companyCategories);
-  console.log("Produtos => ", companyProducts);
-  console.log("Vendas => ", companySales);
-  console.log("Usuários => ", companyUsers);
+  // console.log("Empresa => ", company);
+  // console.log("Categorias => ", companyCategories);
+  // console.log("Produtos => ", companyProducts);
+  // console.log("Vendas => ", companySales);
+  // console.log("Usuários => ", companyUsers);
 
   return (
     <companyContext.Provider value={{ company }}>
