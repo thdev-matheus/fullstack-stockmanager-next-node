@@ -2,9 +2,10 @@
 
 import { useUserContext } from "@/contexts/user";
 import { ICompany } from "@/globalTypes/company";
-import api from "@/services/api";
 import { useEffect, useState } from "react";
 import { toast } from "react-toast";
+import * as B from "@//blocks";
+import api from "@/services/api";
 
 export default function StaffCompaniesPage() {
   const [companies, setCompanies] = useState<ICompany[]>([]);
@@ -29,10 +30,11 @@ export default function StaffCompaniesPage() {
   }, []);
 
   return (
-    <>
+    <section>
+      <B.Filter />
       {companies?.map((company) => (
         <p key={company.id}>{company.name}</p>
       ))}
-    </>
+    </section>
   );
 }
