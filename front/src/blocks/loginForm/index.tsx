@@ -31,9 +31,10 @@ export default function LoginForm() {
       onSubmit={handleSubmit(loginSubmit)}
     >
       <C.Input
-        label="Nome"
+        label="Usuário"
         icon={FiUser}
         type="text"
+        placeholder="Digite o seu usuário"
         {...register("name")}
         error={errors.name?.message}
       />
@@ -41,6 +42,7 @@ export default function LoginForm() {
         label="Senha"
         icon={FiLock}
         type="password"
+        placeholder="Digite sua senha"
         {...register("password")}
         error={errors.password?.message}
       />

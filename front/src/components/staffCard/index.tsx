@@ -7,7 +7,7 @@ export default function StaffCard({
 }: T.IStaffCardProps) {
   return (
     <div
-      className="border border-white w-[12.5rem] h-[15.6rem] rounded-lg flex flex-col justify-center items-center gap-8 cursor-pointer"
+      className="border border-white w-48 h-60 rounded-lg flex flex-col justify-center items-center gap-8 cursor-pointer max-sm:h-40 max-sm:gap-4"
       onClick={onAction}
     >
       <Icon className="text-[35pt]" />

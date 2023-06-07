@@ -8,7 +8,7 @@ export default function StaffPanelPage() {
   const router = useRouter();
 
   return (
-    <section className="flex flex-wrap items-center justify-center w-full h-full gap-4 px-20 max-sm:px-4 max-sm:gap-0">
+    <section className="flex max-sm:flex-col items-center justify-center w-full h-full gap-4 px-20 max-sm:px-4 max-sm:gap-2">
       <C.StaffCard
         icon={FaBuilding}
         label="Empresas"
