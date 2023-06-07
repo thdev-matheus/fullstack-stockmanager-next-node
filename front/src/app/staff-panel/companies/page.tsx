@@ -50,8 +50,8 @@ export default function StaffCompaniesPage() {
   }, []);
 
   return (
-    <section className="w-1/2 max-md:w-full flex flex-col gap-4 items-center justify-start">
-      <h1 className="text-4xl font-bold mb-8">Empresas</h1>
+    <section className="flex flex-col items-center justify-start w-3/4 gap-8 max-md:w-full">
+      <h1 className="mb-4 text-4xl font-bold">Empresas</h1>
 
       <B.Filter
         placeholder="Procurar empresas"
@@ -60,12 +60,11 @@ export default function StaffCompaniesPage() {
         onFilterAction={filterCompanies}
       />
 
-      <section>
+      <section className="w-full">
         {displayedCompanies?.map((company) => (
           <C.CompanyRowCard
             key={company.id}
             company={company}
-            toggleDeletModal={() => {}}
             toggleEditModal={() => {}}
           />
         ))}
