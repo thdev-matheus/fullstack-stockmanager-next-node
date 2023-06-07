@@ -20,7 +20,7 @@ export default function EditCompanyForm({
   !selectedCompany && toggleModal();
 
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const { updateCompany } = useCompanyContext();
+  const { updateCompany, deleteCompany } = useCompanyContext();
 
   const toggleIsDeleteOpen = () => setIsDeleteOpen(!isDeleteOpen);
 
@@ -45,6 +45,12 @@ export default function EditCompanyForm({
     }
   };
 
+  const handleDeleteCompany = async () => {
+    await deleteCompany(toggleIsDeleteOpen, selectedCompany!.id);
+    await getAllCompanies();
+    toggleModal();
+  };
+
   const ModalDelete = () => (
     <B.BaseModal toggleModal={toggleIsDeleteOpen}>
       <div className="flex flex-col items-center justify-center gap-4">
@@ -54,7 +60,10 @@ export default function EditCompanyForm({
         </p>
         <div className="flex w-full gap-1">
           <C.Button onClick={toggleIsDeleteOpen}>Cancelar</C.Button>
-          <div className="w-[50%] bg-red-500 rounded-lg flex justify-center items-center cursor-pointer">
+          <div
+            onClick={handleDeleteCompany}
+            className="w-[50%] bg-red-500 rounded-lg flex justify-center items-center cursor-pointer"
+          >
             Deletar
           </div>
         </div>

@@ -69,6 +69,19 @@ export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
     }
   };
 
+  const deleteCompany = async (toggle: () => void, companyId: string) => {
+    try {
+      await api.delete(`/companies/${companyId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      toast.success("Empresa deletada com sucesso!");
+      toggle();
+    } catch (error) {
+      toast.error("Erro ao deletar esta empresa");
+    }
+  };
+
   const getCompanyCategories = async (companyId: string) => {
     try {
       api
@@ -165,6 +178,7 @@ export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
         companyUsers,
         createCompany,
         updateCompany,
+        deleteCompany,
       }}
     >
       {children}

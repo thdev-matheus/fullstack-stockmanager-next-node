@@ -25,6 +25,8 @@ export interface ICompanyContext {
     toggle: () => void,
     companyId: string
   ) => Promise<void>;
+
+  deleteCompany: (toggle: () => void, companyId: string) => Promise<void>;
 }
 
 export interface ICompanyProviderProps {
