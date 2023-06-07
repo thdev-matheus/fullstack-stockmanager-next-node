@@ -8,10 +8,10 @@ export interface ICompany {
 
 export interface ICompanyCreateRequest {
   name: string;
-  image: string;
+  image?: string;
 }
 
 export interface ICompanyUpdateRequest {
-  name: string;
+  name?: string;
   image?: string;
 }

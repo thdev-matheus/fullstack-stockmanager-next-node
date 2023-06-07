@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { ICompany } from "@/globalTypes/company";
+import { ICompany, ICompanyCreateRequest } from "@/globalTypes/company";
 import { ICategory } from "@/globalTypes/category";
 import { IUser } from "@/globalTypes/user";
 import { ISale } from "@/globalTypes/sale";
@@ -31,6 +31,22 @@ export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
   const { user } = useUserContext();
 
   const token = localStorage.getItem("@SM-TOKEN");
+
+  const createCompany = async (
+    data: ICompanyCreateRequest,
+    toggle: () => void
+  ) => {
+    try {
+      await api.post("/companies", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      toast.success("Empresa criada com sucesso!");
+      toggle();
+    } catch (error) {
+      toast.error("Erro na criação desta empresa");
+    }
+  };
 
   const getCompanyCategories = async (companyId: string) => {
     try {
@@ -119,7 +135,16 @@ export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
   // console.log("Usuários => ", companyUsers);
 
   return (
-    <companyContext.Provider value={{ company }}>
+    <companyContext.Provider
+      value={{
+        company,
+        companyCategories,
+        companyProducts,
+        companySales,
+        companyUsers,
+        createCompany,
+      }}
+    >
       {children}
     </companyContext.Provider>
   );

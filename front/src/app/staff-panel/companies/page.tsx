@@ -60,7 +60,10 @@ export default function StaffCompaniesPage() {
     <>
       {isOpenCreate && (
         <B.BaseModal toggleModal={toggleModalCreate}>
-          <h3>Criar Empresa</h3> <span>Criação de empresa</span>
+          <B.CreateCompanyForm
+            toggleModal={toggleModalCreate}
+            getAllCompanies={getAllCompanies}
+          />
         </B.BaseModal>
       )}
       <section className="flex flex-col items-center justify-start w-3/4 h-full gap-4 max-md:w-full">
