@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={`${inter.className} bg-zinc-800`}>
+      <body className={`${inter.className} bg-zinc-800 max-md:px-4 px-20 py-4`}>
         <Contexts>{children}</Contexts>
       </body>
     </html>

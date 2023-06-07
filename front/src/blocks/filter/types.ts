@@ -1,5 +1,6 @@
 export interface IFilterProps {
-  onFilterAction: () => Promise<void>;
+  filterValue: string;
+  onFilterAction: (() => Promise<void>) | (() => void);
   onFilterChange: (value: string) => void;
   placeholder?: string;
 }

@@ -9,8 +9,26 @@ import api from "@/services/api";
 
 export default function StaffCompaniesPage() {
   const [companies, setCompanies] = useState<ICompany[]>([]);
+  const [displayedCompanies, setDisplayedCompanies] = useState<ICompany[]>([]);
+  const [filterValue, setFilterValue] = useState("");
   const { protectStaffRoute } = useUserContext();
   const token = localStorage.getItem("@SM-TOKEN");
+
+  const filterChange = (value: string) => {
+    setFilterValue(value);
+
+    if (value === "") {
+      setDisplayedCompanies(companies);
+    }
+  };
+
+  const filterCompanies = () => {
+    const newCompanies = companies.filter((company) =>
+      company.name.toLowerCase().includes(filterValue.toLowerCase())
+    );
+
+    setDisplayedCompanies(newCompanies);
+  };
 
   const getAllCompanies = async () => {
     try {
@@ -19,6 +37,7 @@ export default function StaffCompaniesPage() {
       });
 
       setCompanies(response.data.results);
+      setDisplayedCompanies(response.data.results);
     } catch (error) {
       toast.error("erro ao buscar todas as empresas");
     }
@@ -30,11 +49,21 @@ export default function StaffCompaniesPage() {
   }, []);
 
   return (
-    <section>
-      <B.Filter />
-      {companies?.map((company) => (
-        <p key={company.id}>{company.name}</p>
-      ))}
+    <section className="w-1/2 max-md:w-full flex flex-col items-center justify-start">
+      <h1 className="text-4xl font-bold mb-8">Empresas</h1>
+
+      <B.Filter
+        placeholder="Procurar empresas"
+        filterValue={filterValue}
+        onFilterChange={filterChange}
+        onFilterAction={filterCompanies}
+      />
+
+      <section>
+        {displayedCompanies?.map((company) => (
+          <p key={company.id}>{company.name}</p>
+        ))}
+      </section>
     </section>
   );
 }
