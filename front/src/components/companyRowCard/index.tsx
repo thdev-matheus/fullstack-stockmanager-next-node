@@ -1,21 +1,30 @@
 import * as T from "./types";
-import { IoMdSettings } from "react-icons/io";
 
 export default function CompanyRowCard({
   company: { image, createdAt, name },
   toggleEditModal,
 }: T.ICompanyRowCardProps) {
-  const criationDate = new Date(createdAt);
+  const formatDate = () => {
+    var partes = createdAt.toString().split(" ");
 
-  const createdDate = `criado em ${
-    criationDate.getDay() < 10
-      ? "0" + criationDate.getDay()
-      : criationDate.getDay()
-  }/${
-    criationDate.getMonth() < 10
-      ? "0" + criationDate.getMonth()
-      : criationDate.getMonth()
-  }/${criationDate.getFullYear()}`;
+    var data = partes[0].split("-");
+    var ano = parseInt(data[0]);
+    var mes = parseInt(data[1]);
+    var dia = parseInt(data[2]);
+
+    var dateObject = new Date(ano, mes - 1, dia);
+
+    var date =
+      ("0" + dateObject.getDate()).slice(-2) +
+      "/" +
+      ("0" + (dateObject.getMonth() + 1)).slice(-2) +
+      "/" +
+      dateObject.getFullYear();
+
+    return date;
+  };
+
+  const createdDate = `criado em ${formatDate()}`;
 
   return (
     <div
