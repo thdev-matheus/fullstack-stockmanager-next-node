@@ -5,6 +5,7 @@ import { ICompany } from "@/globalTypes/company";
 import { useEffect, useState } from "react";
 import { toast } from "react-toast";
 import * as B from "@//blocks";
+import * as C from "@//components";
 import api from "@/services/api";
 
 export default function StaffCompaniesPage() {
@@ -49,7 +50,7 @@ export default function StaffCompaniesPage() {
   }, []);
 
   return (
-    <section className="w-1/2 max-md:w-full flex flex-col items-center justify-start">
+    <section className="w-1/2 max-md:w-full flex flex-col gap-4 items-center justify-start">
       <h1 className="text-4xl font-bold mb-8">Empresas</h1>
 
       <B.Filter
@@ -61,7 +62,12 @@ export default function StaffCompaniesPage() {
 
       <section>
         {displayedCompanies?.map((company) => (
-          <p key={company.id}>{company.name}</p>
+          <C.CompanyRowCard
+            key={company.id}
+            company={company}
+            toggleDeletModal={() => {}}
+            toggleEditModal={() => {}}
+          />
         ))}
       </section>
     </section>
