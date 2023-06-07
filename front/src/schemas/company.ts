@@ -8,3 +8,9 @@ export const createCompanySchema = z.object({
 
   image: z.string().optional(),
 });
+
+export const editCompanySchema = z.object({
+  name: z.string().optional(),
+
+  image: z.string().optional(),
+});

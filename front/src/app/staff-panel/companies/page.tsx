@@ -15,12 +15,14 @@ export default function StaffCompaniesPage() {
 
   const [isOpenCreate, setIsOpenCreate] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState<ICompany | {}>({});
+  const [selectedCompany, setSelectedCompany] = useState<ICompany | null>(null);
   const { protectStaffRoute } = useUserContext();
 
   const token = localStorage.getItem("@SM-TOKEN");
 
   const toggleModalCreate = () => setIsOpenCreate(!isOpenCreate);
+
+  const toggleModalEdit = () => setIsOpenEdit(!isOpenEdit);
 
   const filterChange = (value: string) => {
     setFilterValue(value);
@@ -66,6 +68,17 @@ export default function StaffCompaniesPage() {
           />
         </B.BaseModal>
       )}
+
+      {isOpenEdit && (
+        <B.BaseModal toggleModal={toggleModalEdit}>
+          <B.EditCompanyForm
+            selectedCompany={selectedCompany}
+            toggleModal={toggleModalEdit}
+            getAllCompanies={getAllCompanies}
+          />
+        </B.BaseModal>
+      )}
+
       <section className="flex flex-col items-center justify-start w-3/4 h-full gap-4 max-md:w-full">
         <h1 className="mb-4 text-4xl font-bold">Empresas</h1>
 
@@ -87,7 +100,10 @@ export default function StaffCompaniesPage() {
             <C.CompanyRowCard
               key={company.id}
               company={company}
-              toggleEditModal={() => {}}
+              toggleEditModal={() => {
+                setSelectedCompany(company);
+                toggleModalEdit();
+              }}
             />
           ))}
         </section>

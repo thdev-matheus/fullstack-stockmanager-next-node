@@ -1,5 +1,9 @@
-import { ICategory, ICategoryCreateRequest } from "@/globalTypes/category";
-import { ICompany } from "@/globalTypes/company";
+import { ICategory } from "@/globalTypes/category";
+import {
+  ICompany,
+  ICompanyCreateRequest,
+  ICompanyUpdateRequest,
+} from "@/globalTypes/company";
 import { IProduct } from "@/globalTypes/product";
 import { ISale } from "@/globalTypes/sale";
 import { IUser } from "@/globalTypes/user";
@@ -12,8 +16,14 @@ export interface ICompanyContext {
   companySales: ISale[];
   companyUsers: IUser[];
   createCompany: (
-    data: ICategoryCreateRequest,
+    data: ICompanyCreateRequest,
     toggle: () => void
+  ) => Promise<void>;
+
+  updateCompany: (
+    data: ICompanyUpdateRequest,
+    toggle: () => void,
+    companyId: string
   ) => Promise<void>;
 }
 

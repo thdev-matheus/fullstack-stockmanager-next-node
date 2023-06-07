@@ -1,7 +1,11 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { ICompany, ICompanyCreateRequest } from "@/globalTypes/company";
+import {
+  ICompany,
+  ICompanyCreateRequest,
+  ICompanyUpdateRequest,
+} from "@/globalTypes/company";
 import { ICategory } from "@/globalTypes/category";
 import { IUser } from "@/globalTypes/user";
 import { ISale } from "@/globalTypes/sale";
@@ -28,9 +32,9 @@ export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
   const [companySales, setCompanySales] = useState<ISale[]>([]);
   const [companyUsers, setCompanyUsers] = useState<IUser[]>([]);
 
-  const { user } = useUserContext();
-
   const token = localStorage.getItem("@SM-TOKEN");
+
+  const { user } = useUserContext();
 
   const createCompany = async (
     data: ICompanyCreateRequest,
@@ -45,6 +49,23 @@ export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
       toggle();
     } catch (error) {
       toast.error("Erro na criação desta empresa");
+    }
+  };
+
+  const updateCompany = async (
+    data: ICompanyUpdateRequest,
+    toggle: () => void,
+    companyId: string
+  ) => {
+    try {
+      await api.patch(`/companies/${companyId}`, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      toast.success("Empresa atualizada com sucesso!");
+      toggle();
+    } catch (error) {
+      toast.error("Erro na edição desta empresa");
     }
   };
 
@@ -143,6 +164,7 @@ export default function CompanyProvider({ children }: T.ICompanyProviderProps) {
         companySales,
         companyUsers,
         createCompany,
+        updateCompany,
       }}
     >
       {children}
