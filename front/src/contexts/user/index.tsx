@@ -23,7 +23,7 @@ export default function UserProvider({ children }: T.IUserProviderProps) {
 
   const protectStaffRoute = async () => {
     try {
-      const token = localStorage.getItem("@SM-token");
+      const token = localStorage.getItem("@SM-TOKEN");
       const userId = localStorage.getItem("@SM-USER-ID");
 
       if (!token || !userId) {

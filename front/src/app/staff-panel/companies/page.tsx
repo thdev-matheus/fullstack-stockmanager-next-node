@@ -1,5 +1,6 @@
 "use client";
 
+import { useUserContext } from "@/contexts/user";
 import { ICompany } from "@/globalTypes/company";
 import api from "@/services/api";
 import { useEffect, useState } from "react";
@@ -7,6 +8,7 @@ import { toast } from "react-toast";
 
 export default function StaffCompaniesPage() {
   const [companies, setCompanies] = useState<ICompany[]>([]);
+  const { protectStaffRoute } = useUserContext();
   const token = localStorage.getItem("@SM-TOKEN");
 
   const getAllCompanies = async () => {
@@ -22,6 +24,7 @@ export default function StaffCompaniesPage() {
   };
 
   useEffect(() => {
+    protectStaffRoute();
     getAllCompanies();
   }, []);
 
