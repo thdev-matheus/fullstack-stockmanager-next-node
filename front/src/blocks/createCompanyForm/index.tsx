@@ -28,9 +28,12 @@ export default function CreateCompanyForm({
   };
 
   return (
-    <section className="">
-      <h3>Criar Empresa</h3>
-      <form onSubmit={handleSubmit(handleCreateCompany)} className="">
+    <section className="flex flex-col items-center justify-center w-full gap-4">
+      <h3 className="text-xl font-bold">Criar Empresa</h3>
+      <form
+        onSubmit={handleSubmit(handleCreateCompany)}
+        className="flex flex-col items-center justify-center w-full gap-2 mb-2"
+      >
         <C.Input
           label="Nome"
           icon={FaBuilding}
