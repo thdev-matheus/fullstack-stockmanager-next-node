@@ -21,6 +21,31 @@ export default function UserProvider({ children }: T.IUserProviderProps) {
 
   const router = useRouter();
 
+  const protectStaffRoute = async () => {
+    try {
+      const token = localStorage.getItem("@SM-token");
+      const userId = localStorage.getItem("@SM-USER-ID");
+
+      if (!token || !userId) {
+        toast.error("Faça login para continuar");
+        router.push("/login");
+        return;
+      }
+
+      const { data } = await api.get<IUser>(`/users/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!data.isStaff) {
+        throw new Error();
+      }
+    } catch (error) {
+      toast.error("Entre com uma conta staff para acessar essa rota");
+
+      router.push("/login");
+    }
+  };
+
   const userLogin = async (data: IUserLoginRequest) => {
     try {
       const response = await api.post("/session/login", data);
@@ -39,7 +64,7 @@ export default function UserProvider({ children }: T.IUserProviderProps) {
   };
 
   return (
-    <userContext.Provider value={{ userLogin, user }}>
+    <userContext.Provider value={{ userLogin, user, protectStaffRoute }}>
       {children}
     </userContext.Provider>
   );

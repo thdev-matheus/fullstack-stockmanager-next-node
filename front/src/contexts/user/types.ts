@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 export interface IUserContext {
   user: IUser | undefined;
   userLogin: (data: IUserLoginRequest) => Promise<void>;
+  protectStaffRoute: () => Promise<void>;
 }
 
 export interface IUserProviderProps {
