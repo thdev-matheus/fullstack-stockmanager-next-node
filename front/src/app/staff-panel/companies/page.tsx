@@ -50,7 +50,7 @@ export default function StaffCompaniesPage() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-start w-3/4 gap-8 max-md:w-full">
+    <section className="flex flex-col items-center justify-start w-3/4 gap-4 max-md:w-full">
       <h1 className="mb-4 text-4xl font-bold">Empresas</h1>
 
       <B.Filter
@@ -59,6 +59,10 @@ export default function StaffCompaniesPage() {
         onFilterChange={filterChange}
         onFilterAction={filterCompanies}
       />
+
+      <div className="w-full h-16">
+        <C.Button secondary>Criar Empresa</C.Button>
+      </div>
 
       <section className="w-full">
         {displayedCompanies?.map((company) => (
