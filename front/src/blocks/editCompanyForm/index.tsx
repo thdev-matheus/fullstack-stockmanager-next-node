@@ -1,5 +1,3 @@
-"use client";
-
 import * as T from "./types";
 import * as C from "@/components";
 import * as B from "@/blocks";
@@ -11,6 +9,7 @@ import { useCompanyContext } from "@/contexts/company";
 import { FaRegImage, FaBuilding, FaTrash } from "react-icons/fa";
 import { toast } from "react-toast";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function EditCompanyForm({
   selectedCompany,
@@ -21,6 +20,8 @@ export default function EditCompanyForm({
 
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const { updateCompany, deleteCompany } = useCompanyContext();
+
+  const router = useRouter();
 
   const toggleIsDeleteOpen = () => setIsDeleteOpen(!isDeleteOpen);
 
@@ -95,15 +96,21 @@ export default function EditCompanyForm({
             {...register("image")}
           />
           <div className="flex w-full gap-1">
-            <C.Button type="submit" secondary>
-              Editar
-            </C.Button>
+            <C.Button type="submit">Editar</C.Button>
             <div
               className="w-[25%] bg-red-500 rounded-lg flex justify-center items-center cursor-pointer"
               onClick={toggleIsDeleteOpen}
             >
               <FaTrash />
             </div>
+          </div>
+          <div className="w-full">
+            <C.Button
+              secondary
+              onClick={() => router.push(`/dashboard/${selectedCompany!.id}`)}
+            >
+              Visitar a empresa
+            </C.Button>
           </div>
         </form>
       </section>

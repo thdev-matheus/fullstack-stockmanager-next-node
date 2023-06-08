@@ -95,7 +95,7 @@ export default function StaffCompaniesPage() {
           </C.Button>
         </div>
 
-        <section className="w-full">
+        <section className="flex flex-col items-center justify-start w-full gap-2 pb-4">
           {displayedCompanies?.map((company) => (
             <C.CompanyRowCard
               key={company.id}

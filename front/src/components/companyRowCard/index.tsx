@@ -31,13 +31,21 @@ export default function CompanyRowCard({
       className="flex items-center justify-between w-full h-20 gap-2 px-4 py-2 cursor-pointer max-md:px-2 rounded-2xl bg-zinc-700"
       onClick={toggleEditModal}
     >
-      <div className="h-full max-lg:min-w-[20%] w-[15%] max-sm:h-3/4 flex justify-center items-center">
-        <img src={image} alt={`logo-${name}`} className="h-full rounded-full" />
+      <div className="h-full max-lg:min-w-[25%] w-[15%] max-sm:h-3/4 flex justify-center items-center">
+        <div className="flex items-center justify-center w-16 h-16 overflow-hidden rounded-full">
+          <img
+            src={image}
+            alt={`logo-${name}`}
+            className="h-full rounded-full"
+          />
+        </div>
       </div>
 
-      <h3 className="px-2 leading-4 text-center max-lg:text-sm text-base min-w-[40%] h-full flex items-center justify-center border-x border-zinc-500 font-bold">
-        {name}
-      </h3>
+      <div className="px-2 flex justify-center items-center min-w-[40%] h-full border-x border-zinc-500 overflow-hidden">
+        <h3 className="overflow-hidden text-base font-bold leading-4 text-center max-lg:text-sm text-ellipsis">
+          {name}
+        </h3>
+      </div>
 
       <span className="leading-4 max-lg:text-[7pt] text-center text-sm min-w-[30%] h-full flex items-center justify-center">
         {createdDate}
